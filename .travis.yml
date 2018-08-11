@@ -1,0 +1,14 @@
+sudo: required
+language: cpp
+os:
+  - linux
+  - osx
+compiler:
+  - g++
+  - clang
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ./PizzaOrders-ut
