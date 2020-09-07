@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
 #include "mocks/PizzaMock.hpp"
-#include "mocks/DummyTimer.hpp"
+#include "mocks/TimeMock.hpp"
 #include "Pizzeria.hpp"
 #include "Margherita.hpp"
 #include "Funghi.hpp"
@@ -12,7 +12,7 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    DummyTimer timer{};
+    StrictMock<TimeMock> timer;
     Pizzeria pizzeria = Pizzeria("dummyName", timer); 
 };
 
@@ -34,6 +34,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza)
 {
     // Given
     Pizzas pizzas = {new PizzaDummy{}};
+    EXPECT_CALL(timer, sleep_for(minutes(0))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -44,6 +45,7 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
+    EXPECT_CALL(timer, sleep_for(minutes(1))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
