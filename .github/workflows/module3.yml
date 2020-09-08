@@ -12,10 +12,10 @@ jobs:
     - name: Create build folder
       run: mkdir build
     - name: Compile
-      working-directory: bowling/build
+      working-directory: build
       run: |
         cmake ..
         make
     - name: Run tests
-      working-directory: bowling/build
+      working-directory: build
       run: ./Pizzas-ut
