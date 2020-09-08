@@ -2,10 +2,9 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
-#include <thread>
 
-Pizzeria::Pizzeria(std::string const& name)
-    : name_(name), orders_() {}
+Pizzeria::Pizzeria(std::string const& name, Timer& timer)
+    : name_(name), orders_(), timer_(timer) {}
 
 int Pizzeria::makeOrder(Pizzas pizzas) {
     int orderId = rand() % 1000;
@@ -39,7 +38,7 @@ void Pizzeria::bakePizzas(int orderId) {
         auto pizzas = std::get<Pizzas>(*order);
         for (const auto& pizza : pizzas) {
             std::cout << "Baking " << pizza->getName() << std::endl;
-            std::this_thread::sleep_for(pizza->getBakingTime());
+            timer_.sleep_for(pizza->getBakingTime());
         }
         std::get<Status>(*order) = Status::Baked;
     } else {
