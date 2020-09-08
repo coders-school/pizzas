@@ -10,7 +10,6 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Create build folder
-      working-directory: bowling
       run: mkdir build
     - name: Compile
       working-directory: bowling/build
