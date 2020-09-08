@@ -1,12 +1,12 @@
 #include "Pizzeria.hpp"
 #include <numeric>
 #include <algorithm>
-#include <thread>
 #include <iostream>
 
-Pizzeria::Pizzeria(std::string const & name)
+Pizzeria::Pizzeria(std::string const & name, Timer & timer)
     : name_(name)
     , orders_()
+    , timer_(timer)
 {}
 
 int Pizzeria::makeOrder(Pizzas pizzas)
@@ -49,7 +49,7 @@ void Pizzeria::bakePizzas(int orderId)
         for (const auto & pizza : pizzas)
         {
             std::cout << "Baking " << pizza->getName() << std::endl;
-            std::this_thread::sleep_for(pizza->getBakingTime());
+            timer_.sleep_for(pizza->getBakingTime());
         }
         std::get<Status>(*order) = Status::Baked;
     } else {
