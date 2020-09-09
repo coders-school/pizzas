@@ -1,4 +1,4 @@
-iname: C++ with CMake CI
+name: C++ with CMake CI
 
 on: [push, pull_request]
 
