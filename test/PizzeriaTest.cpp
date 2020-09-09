@@ -12,8 +12,8 @@ using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    DummyTimer timer;
-    Pizzeria pizzeria = Pizzeria("dummyName", timer);
+    StrictMock<TimeMock> timerMock{};
+    Pizzeria pizzeria = Pizzeria("dummyName", timerMock);
 };
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
@@ -31,6 +31,7 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
 TEST_F(PizzeriaTest, bakeDummyPizza) {
     // Given
     Pizzas pizzas = {new PizzaDummy{}};
+    EXPECT_CALL(timerMock, sleep_for(minutes(0))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -40,6 +41,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza) {
 TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
+    EXPECT_CALL(timerMock, sleep_for(minutes(1))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -61,4 +63,32 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
     ASSERT_EQ(40, price);
 
     delete mock;
+}
+
+TEST_F(PizzeriaTest, testMainFunctionalityForPizzaVariety) {
+    //Given
+    PizzaStub stub{"stub"};
+    StrictMock<PizzaMock> strictPizza{};
+    NiceMock<PizzaMock> nicePizza{};
+    Pizzas pizzas = {&stub, &strictPizza, &nicePizza};
+    EXPECT_CALL(strictPizza, getName()).WillOnce(Return("strictPizza"));
+    EXPECT_CALL(strictPizza, getPrice()).WillOnce(Return(20.0));
+    EXPECT_CALL(strictPizza, getBakingTime()).WillOnce(Return(minutes(2)));
+
+    EXPECT_CALL(nicePizza, getName()).WillOnce(Return("nicePizza"));
+    EXPECT_CALL(nicePizza, getPrice()).WillOnce(Return(40.0));
+    EXPECT_CALL(nicePizza, getBakingTime()).WillOnce(Return(minutes(3)));
+
+    EXPECT_CALL(timerMock, sleep_for(minutes(1))).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(minutes(2))).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(minutes(3))).Times(1);
+
+    //When
+    auto orderId = pizzeria.makeOrder(pizzas);
+    auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
+
+    //Then
+    ASSERT_EQ(60, price);
 }
