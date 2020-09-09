@@ -4,8 +4,8 @@
 #include "Margherita.hpp"
 #include "Pizzeria.hpp"
 #include "Timer.hpp"
-#include "mocks/DummyTimer.hpp"
 #include "mocks/PizzaMock.hpp"
+#include "mocks/TimerMock.hpp"
 
 using namespace std;
 using namespace ::testing;
