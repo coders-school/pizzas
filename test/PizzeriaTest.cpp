@@ -73,6 +73,13 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoDifferentMockPizzas)
 {
     // Given
+    constexpr double mockPizza1Price = 666;
+    constexpr double mockPizza2Price = 333;
+    constexpr char mockPizza1Name[] = "FirstMock";
+    constexpr char mockPizza2Name[] = "SecondMock";
+    constexpr minutes mockPizza1BakingTime{10};
+    constexpr minutes mockPizza2BakingTime{20};
+    
     PizzaStub stubPizza{"STUB"};
     StrictMock<PizzaMock> mockPizza1{};
     NiceMock<PizzaMock> mockPizza2{};
@@ -82,16 +89,16 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoDifferentMockPizzas)
     EXPECT_CALL(timer, sleep_for(minutes(1))).Times(1);
 
     //mockPizza1 excepts
-    EXPECT_CALL(mockPizza1, getPrice()).WillOnce(Return(666));
-    EXPECT_CALL(mockPizza1, getName()).WillOnce(Return("FirstMock"));
-    EXPECT_CALL(mockPizza1, getBakingTime()).WillOnce(Return(minutes(2)));
-    EXPECT_CALL(timer, sleep_for(minutes(2))).Times(1);
+    EXPECT_CALL(mockPizza1, getPrice()).WillOnce(Return(mockPizza1Price));
+    EXPECT_CALL(mockPizza1, getName()).WillOnce(Return(mockPizza1Name));
+    EXPECT_CALL(mockPizza1, getBakingTime()).WillOnce(Return(mockPizza1BakingTime));
+    EXPECT_CALL(timer, sleep_for(mockPizza1BakingTime)).Times(1);
 
     //mockPizza2 excepts
-    EXPECT_CALL(mockPizza2, getPrice()).WillOnce(Return(333));
-    EXPECT_CALL(mockPizza2, getName()).WillOnce(Return("SecondMock"));
-    EXPECT_CALL(mockPizza2, getBakingTime()).WillOnce(Return(minutes(0)));
-    EXPECT_CALL(timer, sleep_for(minutes(0))).Times(1);
+    EXPECT_CALL(mockPizza2, getPrice()).WillOnce(Return(mockPizza2Price));
+    EXPECT_CALL(mockPizza2, getName()).WillOnce(Return(mockPizza2Name));
+    EXPECT_CALL(mockPizza2, getBakingTime()).WillOnce(Return(mockPizza2BakingTime));
+    EXPECT_CALL(timer, sleep_for(mockPizza2BakingTime)).Times(1);
     
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -99,5 +106,5 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoDifferentMockPizzas)
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
 
-    ASSERT_GE(price, 999);
+    ASSERT_GE(price, mockPizza1Price + mockPizza2Price);
 }
