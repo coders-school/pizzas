@@ -53,14 +53,15 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
     // Given
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
-    EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
+    constexpr double mockPrice = 40.0;
+    EXPECT_CALL(*mock, getPrice()).WillOnce(Return(mockPrice));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
 
     // Then
-    ASSERT_EQ(40, price);
+    ASSERT_EQ(mockPrice, price);
 
     delete mock;
 }
@@ -71,17 +72,23 @@ TEST_F(PizzeriaTest, testMainFunctionalityForPizzaVariety) {
     StrictMock<PizzaMock> strictPizza{};
     NiceMock<PizzaMock> nicePizza{};
     Pizzas pizzas = {&stub, &strictPizza, &nicePizza};
+    constexpr double strictPrice = 20.0;
+    constexpr double nicePrice = 40.0;
+    constexpr auto strictTime = minutes(2);
+    constexpr auto niceTime = minutes(3);
+    constexpr auto stubTime = minutes(1);
+
     EXPECT_CALL(strictPizza, getName()).WillOnce(Return("strictPizza"));
-    EXPECT_CALL(strictPizza, getPrice()).WillOnce(Return(20.0));
-    EXPECT_CALL(strictPizza, getBakingTime()).WillOnce(Return(minutes(2)));
+    EXPECT_CALL(strictPizza, getPrice()).WillOnce(Return(strictPrice));
+    EXPECT_CALL(strictPizza, getBakingTime()).WillOnce(Return(strictTime));
 
     EXPECT_CALL(nicePizza, getName()).WillOnce(Return("nicePizza"));
-    EXPECT_CALL(nicePizza, getPrice()).WillOnce(Return(40.0));
-    EXPECT_CALL(nicePizza, getBakingTime()).WillOnce(Return(minutes(3)));
+    EXPECT_CALL(nicePizza, getPrice()).WillOnce(Return(nicePrice));
+    EXPECT_CALL(nicePizza, getBakingTime()).WillOnce(Return(niceTime));
 
-    EXPECT_CALL(timerMock, sleep_for(minutes(1))).Times(1);
-    EXPECT_CALL(timerMock, sleep_for(minutes(2))).Times(1);
-    EXPECT_CALL(timerMock, sleep_for(minutes(3))).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(stubTime)).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(strictTime)).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(niceTime)).Times(1);
 
     //When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -90,5 +97,5 @@ TEST_F(PizzeriaTest, testMainFunctionalityForPizzaVariety) {
     pizzeria.completeOrder(orderId);
 
     //Then
-    ASSERT_EQ(60, price);
+    ASSERT_EQ(nicePrice + strictPrice, price);
 }
