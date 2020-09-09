@@ -38,7 +38,6 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 
-set(CMAKE_BUILD_TYPE Debug)
 
 project(Pizzas)
 
