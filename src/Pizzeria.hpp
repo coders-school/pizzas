@@ -30,4 +30,3 @@ private:
     std::vector<Order> orders_;
     Timer& timer_;
 };
-

@@ -73,5 +73,3 @@ void Pizzeria::completeOrder(int orderId)
         throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
     }
 }
-
-

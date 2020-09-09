@@ -25,10 +25,8 @@ struct PizzaStub : public Pizza
 
 struct PizzaMock : public Pizza
 {
-    PizzaMock() : Pizza("mock", 0.0, minutes(0)) {} // constructors should be avoided. Interface is advised
-    // MOCK_CONST_METHOD0(getName, std::string());
-    // MOCK_CONST_METHOD0(getPrice, double());
-    // MOCK_CONST_METHOD0(getBakingTime, minutes());
+    PizzaMock() 
+        : Pizza("mock", 0.0, minutes(0)) {} 
 
     MOCK_METHOD(std::string, getName, (), (const, override));
     MOCK_METHOD(double, getPrice, (), (const, override));
