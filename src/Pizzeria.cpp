@@ -33,7 +33,7 @@ double Pizzeria::calculatePrice(int orderId)
                                {
                                    return previousSum + pizza->getPrice();
                                });
-    } 
+    }
     throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
 }
 
