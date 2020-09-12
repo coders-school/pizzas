@@ -54,13 +54,15 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {   
     // Given
-    PizzaMock mock{};
+    NiceMock<PizzaMock> mock{};
     Pizzas pizzas = {&mock};
     EXPECT_CALL(mock, getPrice()).WillOnce(Return(40.0));
     
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
 
     // Then
     ASSERT_EQ(40, price);
