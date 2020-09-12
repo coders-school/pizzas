@@ -75,3 +75,30 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
     // Then
     ASSERT_EQ(40, price);
 }
+
+TEST_F(PizzeriaTest, completeOrderForOneStubAndTwoMockPizzas) {
+    // Given
+    PizzaStub StubPizza{"STUB"};
+    StrictMock<PizzaMock> funghiMockPizza;
+    NiceMock<PizzaMock> margheritaMockPizza;
+    Pizzas pizzas{&StubPizza, &funghiMockPizza, &margheritaMockPizza};
+
+    EXPECT_CALL(funghiMockPizza, getPrice()).WillOnce(Return(40.0));
+    EXPECT_CALL(funghiMockPizza, getName()).WillOnce(Return("Funghi"));
+    EXPECT_CALL(funghiMockPizza, getBakingTime()).WillOnce(Return(minutes(5)));
+    EXPECT_CALL(margheritaMockPizza, getPrice()).WillOnce(Return(25.0));
+    EXPECT_CALL(margheritaMockPizza, getName()).WillOnce(Return("Margherita"));
+    EXPECT_CALL(margheritaMockPizza, getBakingTime()).WillOnce(Return(minutes(9))); 
+    EXPECT_CALL(mockTimer, sleep_for(minutes(1))).Times(1);
+    EXPECT_CALL(mockTimer, sleep_for(minutes(5))).Times(1);
+    EXPECT_CALL(mockTimer, sleep_for(minutes(9))).Times(1);
+
+    // When
+    auto orderId = pizzeria.makeOrder(pizzas);
+    auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
+
+    // Then
+    ASSERT_EQ(75, price);
+}
