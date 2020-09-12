@@ -1,8 +1,7 @@
 #pragma once
 #include <chrono>
 
-using minutes = std::chrono::seconds;   // To simulate time flow ;)
-
+using minutes = std::chrono::seconds;  // To simulate time flow ;)
 
 class Timer {
 public:
