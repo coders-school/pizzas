@@ -5,8 +5,8 @@
 
 Pizzeria::Pizzeria(std::string const & name, Timer& timer)
     : name_(name)
-    , timer_(timer)
     , orders_()
+    , timer_(timer)
 {}
 
 int Pizzeria::makeOrder(Pizzas pizzas)

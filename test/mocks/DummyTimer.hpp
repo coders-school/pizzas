@@ -2,7 +2,7 @@
 
 #include "Timer.hpp"
 
-class ThreadTimer : public Timer {
+class DummyTimer : public Timer {
 public:
     void sleep_for(minutes duration) override {}
 };
