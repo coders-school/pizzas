@@ -7,14 +7,16 @@
 
 #include "mocks/DummyTimer.hpp"
 #include "mocks/PizzaMock.hpp"
+#include "mocks/TimerMock.hpp"
 
 using namespace std;
 using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    DummyTimer dt;
+    StrictMock<TimerMock> dt;
     Pizzeria pizzeria = Pizzeria("dummyName", dt);
+    
 };
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
@@ -32,6 +34,7 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
 TEST_F(PizzeriaTest, bakeDummyPizza) {
     // Given
     Pizzas pizzas = {new PizzaDummy{}};
+    EXPECT_CALL(dt, sleep_for(_));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -41,6 +44,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza) {
 TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
+    EXPECT_CALL(dt, sleep_for(_));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -53,6 +57,7 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
     NiceMock<PizzaMock> mock{};
     Pizzas pizzas = {&mock};
     EXPECT_CALL(mock, getPrice()).WillOnce(Return(40.0));
+    EXPECT_CALL(dt, sleep_for(_));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -63,3 +68,4 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
     // Then
     ASSERT_EQ(40, price);
 }
+
