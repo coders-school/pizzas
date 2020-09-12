@@ -1,0 +1,20 @@
+name: Module 3 testing homework
+
+on: [push, pull_request]
+
+jobs:
+  pizzas:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@master
+    - name: mkdir build/
+      run: mkdir build/
+    - name: Compile
+      working-directory: build/
+      run: |
+        cmake ..
+        make
+    - name: Run tests
+      working-directory: build/
+      run: ctest -V
