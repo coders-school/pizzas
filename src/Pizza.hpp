@@ -1,10 +1,8 @@
 #pragma once
 #include <list>
 #include <set>
-#include <chrono>
 #include <string>
-
-using minutes = std::chrono::seconds;   // To simulate time flow ;)
+#include "Timer.hpp"
 
 class Pizza
 {

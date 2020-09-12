@@ -1,11 +1,11 @@
 #include "Pizzeria.hpp"
 #include <numeric>
 #include <algorithm>
-#include <thread>
 #include <iostream>
 
-Pizzeria::Pizzeria(std::string const & name)
+Pizzeria::Pizzeria(std::string const & name, Timer& timer)
     : name_(name)
+    , timer_(timer)
     , orders_()
 {}
 
@@ -49,11 +49,14 @@ void Pizzeria::bakePizzas(int orderId)
         for (const auto & pizza : pizzas)
         {
             std::cout << "Baking " << pizza->getName() << std::endl;
-            std::this_thread::sleep_for(pizza->getBakingTime());
+            //std::this_thread::sleep_for(pizza->getBakingTime());
+            timer_.sleep_for(pizza->getBakingTime());
         }
         std::get<Status>(*order) = Status::Baked;
     }
-    throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    else {
+        throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    }
 }
 
 void Pizzeria::completeOrder(int orderId)
@@ -67,7 +70,9 @@ void Pizzeria::completeOrder(int orderId)
         std::cout << "Order " << orderId << " completed" << std::endl;
         std::get<Status>(*order) = Status::Completed;
     }
-    throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    else {
+        throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    }
 }
 
 
