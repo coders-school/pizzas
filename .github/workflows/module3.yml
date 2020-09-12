@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Test code
-      uses: actions/checkout@homework3
+      uses: actions/checkout@master
     - name: mkdir build/
       run: mkdir build/
     - name: Compile
