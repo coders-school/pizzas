@@ -48,6 +48,7 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
+    EXPECT_CALL(mockTimer, sleep_for(minutes(1))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
