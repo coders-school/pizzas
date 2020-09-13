@@ -14,7 +14,6 @@ using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    // DummyTimer dt;
     StrictMock<TimerMock> timerMock{};
     Pizzeria pizzeria = Pizzeria("dummyName", timerMock);
 };
