@@ -21,8 +21,8 @@ struct PizzaStub : public Pizza {
 };
 
 struct PizzaMock : public Pizza {
-    PizzaMock() :Pizza("mock", 0.0, minutes(0)){};
+    PizzaMock() : Pizza("mock", 0.0, minutes(0)){};
     MOCK_METHOD(std::string, getName, (), (const, override));
     MOCK_METHOD(double, getPrice, (), (const, override));
-  MOCK_METHOD(minutes, getBakingTime, (), (const, override));
+    MOCK_METHOD(minutes, getBakingTime, (), (const, override));
 };
