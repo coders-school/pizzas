@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include <string>
-//#include "mocks/DummyTimer.hpp"
 #include "mocks/MockTimer.hpp"
 #include "mocks/PizzaMock.hpp"
 #include "Pizzeria.hpp"
@@ -13,8 +12,6 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    //DummyTimer dt;
-    //Pizzeria pizzeria = Pizzeria("dummyName", dt);
     StrictMock<MockTimer> mockTimer {};
     Pizzeria pizzeria = Pizzeria("dummyName", mockTimer);
 };
