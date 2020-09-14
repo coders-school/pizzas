@@ -3,7 +3,7 @@
 #include "Funghi.hpp"
 #include "Margherita.hpp"
 #include "Pizzeria.hpp"
-#include "mocks/DummyTimer.hpp"
+#include "mocks/TimerMock.hpp"
 #include "mocks/PizzaMock.hpp"
 
 using namespace std;
