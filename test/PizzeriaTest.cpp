@@ -1,9 +1,11 @@
 #include <gtest/gtest.h>
 #include <string>
 #include "mocks/PizzaMock.hpp"
+#include "mocks/DummyTimer.hpp"
 #include "Pizzeria.hpp"
 #include "Margherita.hpp"
 #include "Funghi.hpp"
+
 
 using namespace std;
 using namespace ::testing;
@@ -11,7 +13,8 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName"); 
+    DummyTimer dt;
+    Pizzeria pizzeria = Pizzeria("dummyName", dt); 
 };
 
 
@@ -52,9 +55,9 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {   
     // Given
-    PizzaMock* mock = new PizzaMock{};
-    Pizzas pizzas = {mock};
-    EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
+    PizzaMock mock{};
+    Pizzas pizzas = {&mock};
+    EXPECT_CALL(mock, getPrice()).WillOnce(Return(40.0));
     
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -63,5 +66,4 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
     // Then
     ASSERT_EQ(40, price);
 
-    delete mock;
 }
