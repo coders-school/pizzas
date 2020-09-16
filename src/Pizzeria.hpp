@@ -2,11 +2,10 @@
 #include <string>
 #include <tuple>
 #include <vector>
-#include <chrono>
 #include "Pizza.hpp"
+#include "Timer.hpp"
 
-enum class Status
-{
+enum class Status {
     New,
     Paid,
     Baked,
@@ -15,10 +14,9 @@ enum class Status
 
 using Order = std::tuple<int, Pizzas, std::chrono::system_clock::time_point, Status>;
 
-class Pizzeria
-{
+class Pizzeria {
 public:
-    Pizzeria(std::string const & name);
+    Pizzeria(std::string const& name, Timer& timer);
     int makeOrder(Pizzas pizzas);
     double calculatePrice(int orderId);
     void bakePizzas(int orderId);
@@ -27,5 +25,5 @@ public:
 private:
     std::string name_;
     std::vector<Order> orders_;
+    Timer& timer_;
 };
-
