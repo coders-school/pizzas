@@ -6,8 +6,6 @@ jobs:
   PizzeriaTest:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@master
     - name: mkdir build
       run: mkdir build
     - name: Compile
