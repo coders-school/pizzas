@@ -1,0 +1,24 @@
+name: Pizzas with CMake Ci
+
+on: 
+  push:
+  pull_request:
+    branches:
+      - Pizzas
+
+jobs:
+  ctest:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out code
+      uses: actions/checkout@master
+    - name: mkdir build
+      run: mkdir build
+    - name: Compile
+      working-directory: build
+      run: |
+        cmake ..
+        make
+    - name: Run tests
+      working-directory: build
+      run: ./Pizzas-ut
