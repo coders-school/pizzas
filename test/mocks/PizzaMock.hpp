@@ -3,10 +3,10 @@
 
 struct PizzaDummy : public Pizza
 {
-    PizzaDummy() : Pizza("dummy", 0.0, minutes(0)) {}
+    PizzaDummy() : Pizza("dummy", 0.0, minutes(3)) {}
     std::string getName() const override { return "dummy"; }
     double getPrice() const override { return 0.0; }
-    minutes getBakingTime() const override { return minutes(0); }
+    minutes getBakingTime() const override { return minutes(4); }
 };
 
 struct PizzaStub : public Pizza
@@ -20,14 +20,14 @@ struct PizzaStub : public Pizza
         else 
             return 10.0;
     }
-    minutes getBakingTime() const override { return minutes(1); }
+    minutes getBakingTime() const override { return minutes(5); }
 };
 
 struct PizzaMock : public Pizza
 {
     PizzaMock() : Pizza("mock", 0.0, minutes(0)) {} // constructors should be avoided. Interface is advised
-    MOCK_CONST_METHOD0(getName, std::string());
-    MOCK_CONST_METHOD0(getPrice, double());
-    MOCK_CONST_METHOD0(getBakingTime, minutes());
+    MOCK_METHOD(std::string, getName, (), (const, override));
+    MOCK_METHOD(double, getPrice, (), (const, override));
+    MOCK_METHOD(minutes, getBakingTime, (), (const, override));
 };
 
