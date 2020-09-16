@@ -89,7 +89,3 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoMockPizzas) {
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
 }
-
-TEST_F(PizzeriaTest, BrokenTest) {
-    EXPECT_EQ(1, 0);
-}
