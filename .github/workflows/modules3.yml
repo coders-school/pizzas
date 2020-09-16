@@ -1,11 +1,13 @@
-name: C++ with CMake with Tests
+name: C++ with CMake with tests
 
 on: [push, pull_request]
 
 jobs:
-  PizzeriaTest:
+  PizzeriaTests:
     runs-on: ubuntu-latest
     steps:
+    - name: Check out code
+      uses: actions/checkout@master
     - name: mkdir build
       run: mkdir build
     - name: Compile
