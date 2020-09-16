@@ -10,13 +10,13 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@master
-    - name: mkdir pizzas/build
-      run: mkdir pizzas/build
+    - name: mkdir build
+      run: mkdir build
     - name: Compile
-      working-directory: pizzas/build
+      working-directory: build
       run: |
         cmake ..
         make
     - name: Run tests
-      working-directory: pizzas/build
+      working-directory: build
       run: ctest -V
