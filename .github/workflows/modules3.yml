@@ -11,7 +11,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
       with:
-        -ref: homework
+        ref: homework
     - name: mkdir build
       run: mkdir build
     - name: Compile
