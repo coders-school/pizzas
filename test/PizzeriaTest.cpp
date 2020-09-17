@@ -85,12 +85,12 @@ TEST_F(PizzeriaTest, orderTwoPizzaMockAndOnePizzaStub) {
 
     Pizzas pizzas = {stubPizza.get(), &strictMockPizza, &niceMockPizza};
 
-    EXPECT_CALL(strictMockPizza, getName()).WillRepeatedly(Return(PizzasConstValues::strictMockPizzaName));
-    EXPECT_CALL(strictMockPizza, getBakingTime()).WillRepeatedly(Return(PizzasConstValues::strictMockPizzaBakingTime));
-    EXPECT_CALL(strictMockPizza, getPrice()).WillRepeatedly(Return(PizzasConstValues::strictMockPizzaPrice));
-    EXPECT_CALL(niceMockPizza, getName()).WillRepeatedly(Return(PizzasConstValues::niceMockPizzaName));
-    EXPECT_CALL(niceMockPizza, getBakingTime()).WillRepeatedly(Return(PizzasConstValues::niceMockPizzaBakingTime));
-    EXPECT_CALL(niceMockPizza, getPrice()).WillRepeatedly(Return(PizzasConstValues::strictMockPizzaPrice));
+    EXPECT_CALL(strictMockPizza, getName()).WillOnce(Return(PizzasConstValues::strictMockPizzaName));
+    EXPECT_CALL(strictMockPizza, getBakingTime()).WillOnce(Return(PizzasConstValues::strictMockPizzaBakingTime));
+    EXPECT_CALL(strictMockPizza, getPrice()).WillOnce(Return(PizzasConstValues::strictMockPizzaPrice));
+    EXPECT_CALL(niceMockPizza, getName()).WillOnce(Return(PizzasConstValues::niceMockPizzaName));
+    EXPECT_CALL(niceMockPizza, getBakingTime()).WillOnce(Return(PizzasConstValues::niceMockPizzaBakingTime));
+    EXPECT_CALL(niceMockPizza, getPrice()).WillOnce(Return(PizzasConstValues::strictMockPizzaPrice));
     EXPECT_CALL(timerMock, sleepFor(stubPizza->getBakingTime()));
     EXPECT_CALL(timerMock, sleepFor(PizzasConstValues::strictMockPizzaBakingTime));
     EXPECT_CALL(timerMock, sleepFor(PizzasConstValues::niceMockPizzaBakingTime));
