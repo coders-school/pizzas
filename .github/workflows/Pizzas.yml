@@ -21,5 +21,5 @@ jobs:
         make
     - name: Run tests
       working-directory: build
-      run: ./Pizzas-ut
+      run: ctest -V
       
