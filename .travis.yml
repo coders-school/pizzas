@@ -11,4 +11,4 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./PizzaOrders-ut
+  - ./Pizzas-ut
