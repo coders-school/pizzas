@@ -11,6 +11,11 @@
 using namespace std;
 using namespace ::testing;
 
+constexpr double niceMockPizzaPrice = 35.0;
+constexpr int niceMockPizzaBakingTime = 5;
+constexpr double strictMockPizzaPrice = 25.0;
+constexpr int strictMockPizzaBakingTime = 8;
+
 struct PizzeriaTest : public ::testing::Test {
 public:
     StrictMock<TimerMock> dt;
@@ -75,15 +80,17 @@ TEST_F(PizzeriaTest, orderingDifferentPizzasMainSimulator) {
 
     Pizzas pizzas = {stubPizza.get(), &niceMockPizza, &strictMockPizza};
 
-    EXPECT_CALL(niceMockPizza, getPrice()).WillRepeatedly(Return(35.0));
+    EXPECT_CALL(niceMockPizza, getPrice()).WillRepeatedly(Return(niceMockPizzaPrice));
     EXPECT_CALL(niceMockPizza, getName()).WillRepeatedly(Return("TastyNiceMockPizza"));
-    EXPECT_CALL(niceMockPizza, getBakingTime()).WillRepeatedly(Return(static_cast<minutes>(5)));
+    EXPECT_CALL(niceMockPizza, getBakingTime()).WillRepeatedly(Return(minutes(niceMockPizzaBakingTime)));
 
-    EXPECT_CALL(strictMockPizza, getPrice()).WillRepeatedly(Return(25.0));
+    EXPECT_CALL(strictMockPizza, getPrice()).WillRepeatedly(Return(strictMockPizzaPrice));
     EXPECT_CALL(strictMockPizza, getName()).WillRepeatedly(Return("YummyStrictMockPizza"));
-    EXPECT_CALL(strictMockPizza, getBakingTime()).WillRepeatedly(Return(static_cast<minutes>(15)));
+    EXPECT_CALL(strictMockPizza, getBakingTime()).WillRepeatedly(Return(minutes(strictMockPizzaBakingTime)));
 
-    EXPECT_CALL(dt, sleep_for(_)).Times(3);
+    EXPECT_CALL(dt, sleep_for(stubPizza->getBakingTime()));
+    EXPECT_CALL(dt, sleep_for(minutes(niceMockPizzaBakingTime)));
+    EXPECT_CALL(dt, sleep_for(minutes(strictMockPizzaBakingTime)));
 
     //When
     auto orderId = pizzeria.makeOrder(pizzas);
