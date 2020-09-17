@@ -1,10 +1,9 @@
-#include "Margherita.hpp"
 #include "Funghi.hpp"
+#include "Margherita.hpp"
 #include "Pizzeria.hpp"
 #include "ThreadTimer.hpp"
 
-int main()
-{
+int main() {
     ThreadTimer tt;
     Pizzeria bravo("Bravo Pizza", tt);
     Pizzas pizzas = {new Margherita{25.0}, new Funghi{30.0}};
