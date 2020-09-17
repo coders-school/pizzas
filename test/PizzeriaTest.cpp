@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
 #include <string>
+
 #include "mocks/PizzaMock.hpp"
-#include "Pizzeria.hpp"
-#include "Margherita.hpp"
-#include "Funghi.hpp"
+#include "../src/Pizzeria.hpp"
+#include "../src/Margherita.hpp"
+#include "../src/Funghi.hpp"
 
 using namespace std;
 using namespace ::testing;
@@ -55,7 +56,6 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
     EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
-    
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
