@@ -9,6 +9,11 @@
 using namespace std;
 using namespace ::testing;
 
+constexpr double niceMockPizzaPrice = 35.0;
+constexpr int niceMockPizzaBakingTime = 5;
+constexpr double strictMockPizzaPrice = 25.0;
+constexpr int strictMockPizzaBakingTime = 8;
+
 struct PizzeriaTest : public ::testing::Test {
 public:
     StrictMock<TimeMock> tm;
@@ -66,19 +71,24 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
 
 TEST_F(PizzeriaTest, orderStubAndTwoMockPizzas) {
     // Given
-    StrictMock<PizzaMock>* strict_mock = new StrictMock<PizzaMock>{"strict", 1, minutes(0)};
+    StrictMock<PizzaMock>* strict_mock = new StrictMock<PizzaMock>{"strict", 1, minutes(1)};
     NiceMock<PizzaMock>* nice_mock = new NiceMock<PizzaMock>{"nice", 2, minutes(3)};
-    Pizzas pizzas = {new PizzaStub{"STUB"}, strict_mock, nice_mock};
-    EXPECT_CALL(tm, sleep_for(_)).Times(3);
-    EXPECT_CALL(*strict_mock, getPrice());
+    PizzaStub ps("STUB");
+    Pizzas pizzas = {&ps, strict_mock, nice_mock};
+    EXPECT_CALL(*strict_mock, getPrice()).WillRepeatedly(Return(10.0));
     EXPECT_CALL(*strict_mock, getName());
     EXPECT_CALL(*strict_mock, getBakingTime());
+    EXPECT_CALL(*nice_mock, getPrice()).WillOnce(Return(10.0));
+    EXPECT_CALL(tm, sleep_for(_)).Times(2);
+    EXPECT_CALL(tm, sleep_for(ps.getBakingTime()));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
+
+    ASSERT_EQ(price, 30);
 
     delete strict_mock;
     delete nice_mock;
