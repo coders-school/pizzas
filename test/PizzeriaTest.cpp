@@ -57,9 +57,11 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {   
     // Given
-    NiceMock<PizzaMock>* mock = new NiceMock<PizzaMock>{};
+    NaggyMock<PizzaMock>* mock = new NaggyMock<PizzaMock>{};
     Pizzas pizzas = {mock};
+    EXPECT_CALL(*mock, getName()).WillOnce(Return("naggy_mock"));
     EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
+    EXPECT_CALL(*mock, getBakingTime).Times(1);
     EXPECT_CALL(mockTimer, sleepFor).Times(1);
 
     // When
@@ -75,17 +77,17 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 
 TEST_F(PizzeriaTest, orderOneStubAndTwoMocks) {
     // Given
-    PizzaStub* stubPizza = new PizzaStub{"uneatable"};
+    PizzaStub* stubPizza = new PizzaStub{"stub"};
     StrictMock<PizzaMock>* strictMockPizza = new StrictMock<PizzaMock>{};
     NiceMock<PizzaMock>* niceMockPizza = new NiceMock<PizzaMock>{};
 
     Pizzas pizzas = {stubPizza, strictMockPizza, niceMockPizza};
 
-    EXPECT_CALL(*strictMockPizza, getName()).WillOnce(Return("eatable"));
+    EXPECT_CALL(*strictMockPizza, getName()).WillOnce(Return("scrict_mock"));
     EXPECT_CALL(*strictMockPizza, getBakingTime()).WillOnce(Return(minutes(1)));
     EXPECT_CALL(*strictMockPizza, getPrice()).WillOnce(Return(30.0));
 
-    EXPECT_CALL(*niceMockPizza, getName()).WillOnce(Return("tasty"));
+    EXPECT_CALL(*niceMockPizza, getName()).WillOnce(Return("nice_mock"));
     EXPECT_CALL(*niceMockPizza, getBakingTime()).WillOnce(Return(minutes(1)));
     EXPECT_CALL(*niceMockPizza, getPrice()).WillOnce(Return(35.0));
 
@@ -98,7 +100,7 @@ TEST_F(PizzeriaTest, orderOneStubAndTwoMocks) {
     auto price = pizzeria.calculatePrice(orderId);
 
     // Then
-    ASSERT_EQ(75, price);
+    ASSERT_EQ(65, price);
 
     delete stubPizza;
     delete strictMockPizza;
