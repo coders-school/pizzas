@@ -1,12 +1,11 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "mocks/PizzaMock.hpp"
-#include "../src/Pizzeria.hpp"
-#include "../src/Margherita.hpp"
 #include "../src/Funghi.hpp"
-#include "mocks/DummyTimer.hpp"
+#include "../src/Margherita.hpp"
+#include "../src/Pizzeria.hpp"
 #include "mocks/MockTimer.hpp"
+#include "mocks/PizzaMock.hpp"
 
 using namespace std;
 using namespace ::testing;
