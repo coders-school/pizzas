@@ -69,3 +69,43 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 
     delete mock;
 }
+
+TEST_F(PizzeriaTest, cloneMainFunctionWithOneStubPizzaAndTwoMockPizza)
+{   
+    // Given
+    PizzaStub* stubPizza = new PizzaStub{"STUB"};
+    StrictMock<PizzaMock> strictMockPizza {};
+    NiceMock<PizzaMock> niceMockPizza {};
+    Pizzas pizzas = {stubPizza, & strictMockPizza, & niceMockPizza};
+    std::string strictPizzaName = "Strikt";
+    std::string nicePizzaName = "Najs";
+    constexpr double strictPizzaPrice = 15.49;
+    constexpr double nicePizzaPrice = 29.99;
+    auto stubPizzaTime = stubPizza->getBakingTime();
+    auto strictPizzaTime = minutes(4);
+    auto nicePizzaTime = minutes(8);
+    
+
+    EXPECT_CALL(strictMockPizza, getName()).WillOnce(Return(strictPizzaTime));
+    EXPECT_CALL(strictMockPizza, getBakingTime()).WillOnce(Return(minutes(strictPizzaTime)));
+    EXPECT_CALL(strictMockPizza, getPrice()).WillOnce(Return(strictPizzaPrice));
+
+    EXPECT_CALL(niceMockPizza, getName()).WillOnce(Return(nicePizzaName));
+    EXPECT_CALL(niceMockPizza, getBakingTime()).WillOnce(Return(minutes(nicePizzaTime)));
+    EXPECT_CALL(niceMockPizza, getPrice()).WillOnce(Return(nicePizzaPrice));
+
+    EXPECT_CALL(tm, sleep_for(stubPizzaTime)).Times(1);
+    EXPECT_CALL(tm, sleep_for(strictPizzaTime)).Times(1);
+    EXPECT_CALL(tm, sleep_for(nicePizzaTime)).Times(1);
+
+    // When
+    auto orderId = pizzeria.makeOrder(pizzas);
+    auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
+
+    // Then    
+    ASSERT_EQ(strictPizzaPrice + nicePizzaPrice, price);
+
+    delete stubPizza;
+}
