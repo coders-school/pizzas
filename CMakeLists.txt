@@ -38,6 +38,7 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 
+enable_testing()
 project(Pizzas)
 
 set(SRC_LIST
@@ -61,3 +62,4 @@ set(TEST_SRC_LIST
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+add_test(NAME ${PROJECT_NAME}_test COMMAND ${PROJECT_NAME}-ut)
