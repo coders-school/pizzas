@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  Pizzeria:
+
+    runs-on: [ubuntu-20.04]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: mkdir build
+      run: mkdir build
+    - name: Compile
+      working-directory: build
+      run: |
+        cmake ..
+        make
+    - name: Run tests
+      working-directory: build
+      run: ctest -V 
