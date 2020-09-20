@@ -1,15 +1,11 @@
 #pragma once
 #include <list>
 #include <set>
-#include <chrono>
 #include <string>
-
-using minutes = std::chrono::seconds;   // To simulate time flow ;)
-
-class Pizza
-{
+#include "Timer.hpp"
+class Pizza {
 public:
-    Pizza(std::string const & name, double price, minutes bakingTime);
+    Pizza(std::string const& name, double price, minutes bakingTime);
     virtual ~Pizza() = default;
     virtual std::string getName() const;
     virtual double getPrice() const;
