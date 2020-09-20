@@ -79,8 +79,8 @@ TEST_F(PizzeriaTest, cloneMainFunctionWithOneStubPizzaAndTwoMockPizza)
     Pizzas pizzas = {stubPizza, & strictMockPizza, & niceMockPizza};
     std::string strictPizzaName = "Strikt";
     std::string nicePizzaName = "Najs";
-    constexpr double strictPizzaPrice = 15.49;
-    constexpr double nicePizzaPrice = 29.99;
+    constexpr double strictPizzaPrice = 18.99;
+    constexpr double nicePizzaPrice = 35.49;
     auto stubPizzaTime = stubPizza->getBakingTime();
     constexpr auto strictPizzaTime = minutes(4);
     constexpr auto nicePizzaTime = minutes(8);
@@ -104,7 +104,7 @@ TEST_F(PizzeriaTest, cloneMainFunctionWithOneStubPizzaAndTwoMockPizza)
     pizzeria.completeOrder(orderId);
 
     // Then    
-    ASSERT_EQ(strictPizzaPrice + nicePizzaPrice, price);
+    ASSERT_EQ(strictPizzaPrice + nicePizzaPrice + stubPizza->getPrice(), price);
 
     delete stubPizza;
 }
