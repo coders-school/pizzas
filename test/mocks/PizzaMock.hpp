@@ -14,7 +14,7 @@ struct PizzaStub : public Pizza {
         : Pizza(name, 0.0, minutes(0)) {}
     std::string getName() const override { return Pizza::getName(); }
     double getPrice() const override {
-        if (getName() == "stub")
+        if (getName() == "stubPizza")
             return 0.0;
         else
             return 10.0;
