@@ -82,11 +82,10 @@ TEST_F(PizzeriaTest, cloneMainFunctionWithOneStubPizzaAndTwoMockPizza)
     constexpr double strictPizzaPrice = 15.49;
     constexpr double nicePizzaPrice = 29.99;
     auto stubPizzaTime = stubPizza->getBakingTime();
-    auto strictPizzaTime = minutes(4);
-    auto nicePizzaTime = minutes(8);
+    constexpr auto strictPizzaTime = minutes(4);
+    constexpr auto nicePizzaTime = minutes(8);
     
-
-    EXPECT_CALL(strictMockPizza, getName()).WillOnce(Return(strictPizzaTime));
+    EXPECT_CALL(strictMockPizza, getName()).WillOnce(Return(strictPizzaName));
     EXPECT_CALL(strictMockPizza, getBakingTime()).WillOnce(Return(minutes(strictPizzaTime)));
     EXPECT_CALL(strictMockPizza, getPrice()).WillOnce(Return(strictPizzaPrice));
 
