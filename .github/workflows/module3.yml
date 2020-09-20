@@ -10,7 +10,6 @@ jobs:
       steps:
         uses: actions/checkout@v1
 	
-	name: Create build folder
 	run: mkdir build
 	name: Compile
 	working-directory: build
