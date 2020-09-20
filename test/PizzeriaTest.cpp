@@ -1,9 +1,11 @@
 #include <gtest/gtest.h>
 #include <string>
-#include "mocks/PizzaMock.hpp"
-#include "Pizzeria.hpp"
-#include "Margherita.hpp"
 #include "Funghi.hpp"
+#include "Margherita.hpp"
+#include "Pizzeria.hpp"
+#include "mocks/DummyTimer.hpp"
+#include "mocks/PizzaMock.hpp"
+#include "mocks/TimeMock.hpp"
 
 using namespace std;
 using namespace ::testing;
