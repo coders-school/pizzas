@@ -64,3 +64,36 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
 
     delete mock;
 }
+
+TEST(PizzeriaTestMain, shouldCalculateOrderLikeInMainFunction){
+    // Given
+    constexpr double mockFirstPrice = 20.0;
+    constexpr double mockSecondPrice = 25.0;
+    constexpr char mockFirstName[] = "Pizza mock first";
+    constexpr char mockSecondName[] = "Pizza mock second";
+    constexpr minutes mockFirstBakingTime{10};
+    constexpr minutes mockSecondBakingTime{5};
+
+    StrictMock<TimeMock> tm;
+    Pizzeria bravo("Bravo Pizza", tm);
+    StrictMock<PizzaMock> pm1;
+    NiceMock<PizzaMock> pm2;
+    Pizzas pizzas = {new PizzaStub{"stub"}, &pm1, &pm2};
+
+    EXPECT_CALL(pm1, getPrice()).WillOnce(Return(mockFirstPrice));
+    EXPECT_CALL(pm1, getName()).WillOnce(Return(mockFirstName));
+    EXPECT_CALL(pm1, getBakingTime()).WillOnce(Return(mockFirstBakingTime));
+    EXPECT_CALL(pm2, getPrice()).WillOnce(Return(mockSecondPrice));
+    EXPECT_CALL(pm2, getName()).WillOnce(Return(mockSecondName));
+    EXPECT_CALL(pm2, getBakingTime()).WillOnce(Return(mockSecondBakingTime));
+    EXPECT_CALL(tm, sleep_for).Times(3);
+
+    // When
+    auto orderId = bravo.makeOrder(pizzas);
+    auto price = bravo.calculatePrice(orderId);
+    bravo.bakePizzas(orderId);
+    bravo.completeOrder(orderId);
+
+    // Then
+    ASSERT_EQ(price, mockFirstPrice + mockSecondPrice);
+}
