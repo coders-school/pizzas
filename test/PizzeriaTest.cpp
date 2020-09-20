@@ -5,14 +5,15 @@
 #include "Pizzeria.hpp"
 #include "mocks/DummyTimer.hpp"
 #include "mocks/PizzaMock.hpp"
+#include "mocks/TimeMock.hpp"
 
 using namespace std;
 using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    DummyTimer dt;
-    Pizzeria pizzeria = Pizzeria("dummyName", dt);
+    StrictMock<TimeMock> mt;
+    Pizzeria pizzeria = Pizzeria("dummyName", mt);
 };
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
@@ -30,6 +31,7 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
 TEST_F(PizzeriaTest, bakeDummyPizza) {
     // Given
     Pizzas pizzas = {new PizzaDummy{}};
+    EXPECT_CALL(mt, sleep_for(minutes(0))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -39,6 +41,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza) {
 TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
+    EXPECT_CALL(mt, sleep_for(minutes(1))).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
