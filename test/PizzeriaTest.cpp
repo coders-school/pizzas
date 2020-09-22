@@ -60,7 +60,7 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
     // Given
     Pizza* ps = new PizzaStub{"stub"};
     Pizzas pizzas = {ps};
-    EXPECT_CALL(dt, sleep_for).Times(1);
+    EXPECT_CALL(dt, sleep_for(ps.getBakingTime())).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
