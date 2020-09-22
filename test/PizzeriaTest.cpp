@@ -78,7 +78,7 @@ TEST_F(PizzeriaTest, orderStubAndTwoMockPizzas) {
     EXPECT_CALL(*strict_mock, getPrice()).WillRepeatedly(Return(10.0));
     EXPECT_CALL(*strict_mock, getName());
     EXPECT_CALL(*strict_mock, getBakingTime());
-    EXPECT_CALL(*nice_mock, getPrice()).WillOnce(Return(10.0));
+    EXPECT_CALL(*nice_mock, getPrice()).WillOnce(Return(niceMockPizzaPrice));
     EXPECT_CALL(tm, sleep_for(_)).Times(2);
     EXPECT_CALL(tm, sleep_for(ps.getBakingTime()));
 
