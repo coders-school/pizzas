@@ -75,7 +75,7 @@ TEST_F(PizzeriaTest, orderStubAndTwoMockPizzas) {
     NiceMock<PizzaMock>* nice_mock = new NiceMock<PizzaMock>{"nice", 2, minutes(3)};
     PizzaStub ps("STUB");
     Pizzas pizzas = {&ps, strict_mock, nice_mock};
-    EXPECT_CALL(*strict_mock, getPrice()).WillRepeatedly(Return(10.0));
+    EXPECT_CALL(*strict_mock, getPrice()).WillRepeatedly(Return(strictMockPizzaPrice));
     EXPECT_CALL(*strict_mock, getName());
     EXPECT_CALL(*strict_mock, getBakingTime());
     EXPECT_CALL(*nice_mock, getPrice()).WillOnce(Return(niceMockPizzaPrice));
