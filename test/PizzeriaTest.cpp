@@ -30,6 +30,9 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
 
     // Then
     ASSERT_EQ(55, price);
+
+    delete *pizzas.begin();
+    delete *next(pizzas.begin());
 }
 
 TEST_F(PizzeriaTest, bakeDummyPizza) {
@@ -40,6 +43,8 @@ TEST_F(PizzeriaTest, bakeDummyPizza) {
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     pizzeria.bakePizzas(orderId);
+
+    delete *pizzas.begin();
 }
 
 TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
@@ -51,6 +56,8 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
     auto orderId = pizzeria.makeOrder(pizzas);
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
+
+    delete *pizzas.begin();
 }
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
@@ -77,7 +84,7 @@ TEST_F(PizzeriaTest, orderStubAndTwoMockPizzas) {
     Pizzas pizzas = {&ps, strict_mock, nice_mock};
     EXPECT_CALL(*strict_mock, getPrice()).WillRepeatedly(Return(strictMockPizzaPrice));
     EXPECT_CALL(*strict_mock, getName());
-    EXPECT_CALL(*strict_mock, getBakingTime()).WillOnce(Return(minutes(strictMockPizzaBakingTime));
+    EXPECT_CALL(*strict_mock, getBakingTime()).WillOnce(Return(minutes(strictMockPizzaBakingTime)));
     EXPECT_CALL(*nice_mock, getPrice()).WillOnce(Return(niceMockPizzaPrice));
     EXPECT_CALL(tm, sleep_for(minutes(strictMockPizzaBakingTime)));
     EXPECT_CALL(tm, sleep_for(minutes(niceMockPizzaBakingTime)));
