@@ -88,7 +88,7 @@ TEST_F(PizzeriaTest, orderStubAndTwoMockPizzas) {
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
 
-    ASSERT_EQ(price, 30);
+    ASSERT_EQ(price, strictMockPizzaPrice + niceMockPizzaPrice + ps.getPrice());
 
     delete strict_mock;
     delete nice_mock;
