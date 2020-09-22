@@ -112,7 +112,9 @@ TEST(PizzeriaTestMain, shouldCalculateOrderLikeInMain)
     EXPECT_CALL(pm2, getName()).WillOnce(Return(mock2Name));
     EXPECT_CALL(pm2, getBakingTime()).WillOnce(Return(mock2BakingTime));
 
-    EXPECT_CALL(tm, sleep_for).Times(3);
+    EXPECT_CALL(tm, sleep_for(ps.getBakingTime())).Times(1);
+    EXPECT_CALL(tm, sleep_for(mock1BakingTime)).Times(1);
+    EXPECT_CALL(tm, sleep_for(mock2BakingTime)).Times(1);
 
     // When
     auto orderId = domino.makeOrder(pizzas);
