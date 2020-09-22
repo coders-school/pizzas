@@ -12,3 +12,4 @@ script:
   - cmake ..
   - make
   - ./Pizzas-ut
+  - valgrind ./Pizzas-ut
