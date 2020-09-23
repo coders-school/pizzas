@@ -8,6 +8,8 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@master
+    - name: install valgrind
+      uses: sudo apt-get update && sudo apt-get install valgrind
     - name: mkdir build
       run: mkdir build
     - name: Compile
