@@ -14,8 +14,8 @@ using ::testing::Return;
 
 struct PizzeriaTest : public ::testing::Test {
    public:
-    StrictMock<TimerMock> mock;
-    Pizzeria pizzeria = Pizzeria("dummyName", mock);
+    StrictMock<TimerMock> timerMock;
+    Pizzeria pizzeria = Pizzeria("dummyName", timerMock);
 };
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
@@ -33,7 +33,7 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55) {
 TEST_F(PizzeriaTest, bakeDummyPizza) {
     // Given
     Pizzas pizzas = {new PizzaDummy{}};
-    EXPECT_CALL(mock, sleep_for(_)).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(_)).Times(1);
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     pizzeria.bakePizzas(orderId);
@@ -42,7 +42,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza) {
 TEST_F(PizzeriaTest, completeOrderWithStubPizza) {
     // Given
     Pizzas pizzas = {new PizzaStub{"STUB"}};
-    EXPECT_CALL(mock, sleep_for(_)).Times(1);
+    EXPECT_CALL(timerMock, sleep_for(_)).Times(1);
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     pizzeria.bakePizzas(orderId);
@@ -66,26 +66,41 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
 }
 
 TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoMockPizzas) {
+    const std::string stubPizzaName{"hawaii"};
+    constexpr double stubPrice = 10.0;
+    constexpr minutes stubBakingTime = minutes(5);
+
+    const std::string strictPizzaName{"americana"};
+    constexpr double strictPrice = 30.0;
+    constexpr minutes strictBakingTime = minutes(10);
+
+    const std::string nicePizzaName{"inferno"};
+    constexpr double nicePrice = 50.0;
+    constexpr minutes niceBakingTime = minutes(20);
+
     StrictMock<PizzaMock> strict;
     NiceMock<PizzaMock> nice;
-    PizzaStub stub{"hawaii"};
-    EXPECT_CALL(strict, getName())
-        .WillOnce(Return("americana"));
-    EXPECT_CALL(strict, getPrice())
-        .WillOnce(Return(30));
-    EXPECT_CALL(strict, getBakingTime())
-        .WillOnce(Return(minutes(10)));
-    EXPECT_CALL(nice, getName())
-        .WillOnce(Return("inferno"));
-    EXPECT_CALL(nice, getPrice())
-        .WillOnce(Return(50));
-    EXPECT_CALL(nice, getBakingTime())
-        .WillOnce(Return(minutes(20)));
-    EXPECT_CALL(mock, sleep_for(_))
-        .Times(3);
+    PizzaStub stub{stubPizzaName};
+
+    EXPECT_CALL(strict, getName()).WillRepeatedly(Return(strictPizzaName));
+    EXPECT_CALL(strict, getPrice()).WillRepeatedly(Return(strictPrice));
+    EXPECT_CALL(strict, getBakingTime()).WillRepeatedly(Return(strictBakingTime));
+
+    EXPECT_CALL(nice, getName()).WillRepeatedly(Return(nicePizzaName));
+    EXPECT_CALL(nice, getPrice()).WillRepeatedly(Return(nicePrice));
+    EXPECT_CALL(nice, getBakingTime()).WillRepeatedly(Return(niceBakingTime));
+
+    EXPECT_CALL(timerMock, sleep_for(strictBakingTime));
+    EXPECT_CALL(timerMock, sleep_for(niceBakingTime));
+    EXPECT_CALL(timerMock, sleep_for(stubBakingTime));
+
     Pizzas pizzas{&stub, &strict, &nice};
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
+
+    constexpr double expectedPrice = strictPrice + nicePrice + stubPrice;
+
+    EXPECT_EQ(price, expectedPrice);
 }
