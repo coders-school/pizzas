@@ -99,7 +99,7 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizzaAndTwoMockPizzas) {
     auto price = pizzeria.calculatePrice(orderId);
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
-
+    
     constexpr double expectedPrice = strictPrice + nicePrice + stubPrice;
 
     EXPECT_EQ(price, expectedPrice);
