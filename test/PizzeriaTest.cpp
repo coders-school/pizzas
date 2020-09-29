@@ -10,8 +10,11 @@
 using namespace std;
 using namespace ::testing;
 
-struct PizzeriaTest : public ::testing::Test
-{
+constexpr minutes mockBakingTime = minutes(10);
+constexpr minutes strictBakingTime = minutes(12);
+constexpr minutes niceBakingTime = minutes(16);
+
+struct PizzeriaTest : public ::testing::Test {
 public:
     StrictMock<MockTimer> mockTimer;
     Pizzeria pizzeria = Pizzeria("dummyName", mockTimer);
@@ -60,8 +63,8 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
     Pizzas pizzas = {mock};
     EXPECT_CALL(*mock, getName()).WillOnce(Return("naggy_mock"));
     EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
-    EXPECT_CALL(*mock, getBakingTime).Times(1);
-    EXPECT_CALL(mockTimer, sleepFor).Times(1);
+    EXPECT_CALL(*mock, getBakingTime).WillOnce(Return(mockBakingTime));
+    EXPECT_CALL(mockTimer, sleepFor(mockBakingTime)).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -83,14 +86,16 @@ TEST_F(PizzeriaTest, orderOneStubAndTwoMocks) {
     Pizzas pizzas = {stubPizza, strictMockPizza, niceMockPizza};
 
     EXPECT_CALL(*strictMockPizza, getName()).WillOnce(Return("scrict_mock"));
-    EXPECT_CALL(*strictMockPizza, getBakingTime()).WillOnce(Return(minutes(1)));
+    EXPECT_CALL(*strictMockPizza, getBakingTime()).WillOnce(Return(strictBakingTime));
     EXPECT_CALL(*strictMockPizza, getPrice()).WillOnce(Return(30.0));
 
     EXPECT_CALL(*niceMockPizza, getName()).WillOnce(Return("nice_mock"));
-    EXPECT_CALL(*niceMockPizza, getBakingTime()).WillOnce(Return(minutes(1)));
+    EXPECT_CALL(*niceMockPizza, getBakingTime()).WillOnce(Return(niceBakingTime));
     EXPECT_CALL(*niceMockPizza, getPrice()).WillOnce(Return(35.0));
 
-    EXPECT_CALL(mockTimer, sleepFor).Times(3);
+    EXPECT_CALL(mockTimer, sleepFor(stubPizza->getBakingTime())).Times(1);
+    EXPECT_CALL(mockTimer, sleepFor(strictBakingTime)).Times(1);
+    EXPECT_CALL(mockTimer, sleepFor(niceBakingTime)).Times(1);
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
