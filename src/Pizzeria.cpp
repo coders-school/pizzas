@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <thread>
 #include <iostream>
+#include <memory>
 
-Pizzeria::Pizzeria(std::string const & name)
-    : name_(name)
-    , orders_()
+
+Pizzeria::Pizzeria(std::string const & name, Timer& timer)
+    : name_(name) , orders_(), timer_(timer) 
+
 {}
 
 int Pizzeria::makeOrder(Pizzas pizzas)

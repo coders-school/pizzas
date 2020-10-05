@@ -11,7 +11,8 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName"); 
+    Timer timer_;
+    Pizzeria pizzeria = Pizzeria("dummyName", timer_); 
 };
 
 
