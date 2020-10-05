@@ -14,7 +14,7 @@ Pizzeria::Pizzeria(std::string const & name, Timer& timer)
 int Pizzeria::makeOrder(Pizzas pizzas)
 {
     int orderId = rand() % 1000;
-    orders_.push_back(std::make_tuple(orderId, pizzas, std::chrono::system_clock::now(), Status::New));
+    orders_.push_back(std::make_tuple(orderId, pizzas, timer_.now(), Status::New));
     return orderId;
 }
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Pizza.hpp"
 #include "gmock/gmock.h"
 
