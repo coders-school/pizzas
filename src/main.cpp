@@ -5,8 +5,7 @@
 
 int main()
 {
-    Timer time_;
-    Pizzeria bravo("Bravo Pizza", time_);
+    Pizzeria bravo("Bravo Pizza", std::make_unique<Timer>());
     Pizzas pizzas = {new Margherita{25.0}, new Funghi{30.0}};
 
     auto orderId = bravo.makeOrder(pizzas);
