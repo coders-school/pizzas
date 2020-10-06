@@ -6,10 +6,6 @@
 #include <memory>
 
 
-Pizzeria::Pizzeria(std::string const & name, Timer& timer)
-    : name_(name) , orders_(), timer_(timer)
-{}
-
 Pizzeria::Pizzeria(std::string const & name, std::unique_ptr<ITimer> timer)
     : name_(name) , orders_(), timer_ptr(std::move(timer))
 {}

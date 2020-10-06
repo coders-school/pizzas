@@ -21,7 +21,6 @@ class Pizzeria
 {
 public:
     Pizzeria(std::string const & name, std::unique_ptr<ITimer> timer);
-    Pizzeria(std::string const & name, Timer& timer);
     int makeOrder(Pizzas pizzas);
     double calculatePrice(int orderId);
     void bakePizzas(int orderId);
