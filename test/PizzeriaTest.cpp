@@ -12,8 +12,7 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Timer timer_;
-    Pizzeria pizzeria = Pizzeria("dummyName", timer_);
+    Pizzeria pizzeria = Pizzeria("dummyName", std::make_unique<TimerMock>());
 };
 
 
@@ -52,12 +51,12 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 }
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
-{   
+{
     // Given
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
     EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
-    
+
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
