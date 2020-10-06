@@ -12,7 +12,14 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName", std::make_unique<TimerMock>());
+    PizzeriaTest() : 
+        m_timerMock_ptr(new TimerMock),
+        m_timerMock_rawPtr(m_timerMock_ptr.get()),
+        pizzeria("dummyNane", std::move(m_timerMock_ptr)) {}
+
+  std::unique_ptr<TimerMock> m_timerMock_ptr = nullptr;
+  TimerMock *m_timerMock_rawPtr = nullptr;
+  Pizzeria pizzeria;
 };
 
 
