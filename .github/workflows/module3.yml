@@ -1,0 +1,21 @@
+name: C++ with CMake CI
+
+on: [push, pull_request]
+
+jobs:
+  pizzas:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@master
+    - name: mkdir pizzas/build
+      run: mkdir pizzas/build
+    - name: Compile
+      working-directory: pizzas/build
+      run: |
+         cmake ..
+         make
+    - name: Run tests
+      working-directory: pizzas/build
+      run: ctest -V
+
