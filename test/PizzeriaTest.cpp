@@ -93,6 +93,7 @@ TEST_F(PizzeriaTest, completeOrderWith3Pizzas)
 
     PizzaMock* mockFungi = new NiceMock<PizzaMock>{};
     ON_CALL(*mockFungi, getPrice()).WillByDefault(Return(22.22));
+    ON_CALL(*mockFungi, getBakingTime()).WillByDefault(Return(minutes(90)));
 
     PizzaStub* pizzaStub = new PizzaStub{"STUB"};
 
