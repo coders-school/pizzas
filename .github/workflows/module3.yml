@@ -1,0 +1,23 @@
+
+name: CMake CI
+
+on: [push, pull_request]
+
+jobs:
+  ctest:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Create build folder
+      run: mkdir build
+    - name: Compile
+      working-directory: build
+      run: |
+        cmake ..
+        make
+    - name: Run tests
+      working-directory: build
+      run: ./Pizzas-ut
+      
