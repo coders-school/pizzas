@@ -2,13 +2,11 @@
 #include <list>
 #include <set>
 #include <string>
-
 #include "Timer.hpp"
 
-class Pizza
-{
+class Pizza {
 public:
-    Pizza(std::string const & name, double price, minutes bakingTime);
+    Pizza(std::string const& name, double price, minutes bakingTime);
     virtual ~Pizza() = default;
     virtual std::string getName() const;
     virtual double getPrice() const;

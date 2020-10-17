@@ -1,7 +1,6 @@
 #pragma once
-#include "Timer.hpp"
-
 #include <thread>
+#include "Timer.hpp"
 
 class ThreadTimer : public Timer {
 public:

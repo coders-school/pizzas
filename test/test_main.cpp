@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 int main(int argc, char** argv)
 {
@@ -8,8 +8,7 @@ int main(int argc, char** argv)
         auto code = RUN_ALL_TESTS();
         return code;
     }
-    catch (...)
-    {
+    catch (...) {
         return 0;
     }
     return 0;

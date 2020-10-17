@@ -4,9 +4,7 @@
 #include <numeric>
 
 Pizzeria::Pizzeria(std::string const& name, Timer& timer)
-    : name_(name)
-    , orders_()
-    , timer_(timer)
+    : name_(name), orders_(), timer_(timer)
 {
 }
 
