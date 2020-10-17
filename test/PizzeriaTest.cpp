@@ -1,19 +1,17 @@
 #include <gtest/gtest.h>
 #include <string>
-#include "mocks/PizzaMock.hpp"
-#include "Pizzeria.hpp"
-#include "Margherita.hpp"
 #include "Funghi.hpp"
+#include "Margherita.hpp"
+#include "Pizzeria.hpp"
+#include "mocks/PizzaMock.hpp"
 
 using namespace std;
 using namespace ::testing;
 
-struct PizzeriaTest : public ::testing::Test
-{
+struct PizzeriaTest : public ::testing::Test {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName"); 
+    Pizzeria pizzeria = Pizzeria("dummyName");
 };
-
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
 {
@@ -50,14 +48,19 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 }
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
-{   
+{
     // Given
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
     EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
-    
+    //EXPECT_CALL(*mock, getBakingTime()); never called!
+    //EXPECT_CALL(*mock, getName()); never called!
+
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
+    /* error with naggy mock!
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId); */
     auto price = pizzeria.calculatePrice(orderId);
 
     // Then
