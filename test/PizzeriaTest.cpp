@@ -87,7 +87,7 @@ TEST_F(PizzeriaTestMain, shouldDuplicateMain)
     Pizzas pizzas = {new PizzaStub("Stub"), new PizzaStub("Stub2"), new PizzaStub("Stub3"), &niceMockPizza, &strictMockPizza};
 
     EXPECT_CALL(mockTimer, sleep_for(minutes(1))).Times(3);
-    
+
     EXPECT_CALL(niceMockPizza, getPrice()).WillOnce(Return(cheaperPizza));
     EXPECT_CALL(niceMockPizza, getName()).WillOnce(Return("Special Margherita With More Cheese"));
     EXPECT_CALL(niceMockPizza, getBakingTime()).WillOnce(Return(margheritaBakingTime));
@@ -97,7 +97,6 @@ TEST_F(PizzeriaTestMain, shouldDuplicateMain)
     EXPECT_CALL(strictMockPizza, getName()).WillOnce(Return("Special Funghi With Olives"));
     EXPECT_CALL(strictMockPizza, getBakingTime()).WillOnce(Return(funghiBakingTime));
     EXPECT_CALL(mockTimer, sleep_for(funghiBakingTime)).Times(1);
-
 
     auto orderId = bravo.makeOrder(pizzas);
     auto price = bravo.calculatePrice(orderId);
