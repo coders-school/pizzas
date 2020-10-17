@@ -5,7 +5,7 @@
 
 class ThreadTimer : Timer {
 public:
-    void sleep(minutes duration)
+    void sleep_for(minutes duration)
     {
         std::this_thread::sleep_for(duration);
     }

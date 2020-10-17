@@ -7,6 +7,6 @@ using minutes = std::chrono::seconds;
 class Timer {
 public:
     virtual ~Timer();
-    virtual void sleep(minutes);
+    virtual void sleep_for(minutes) = 0;
 
 };
