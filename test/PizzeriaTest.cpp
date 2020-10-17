@@ -4,13 +4,15 @@
 #include "Margherita.hpp"
 #include "Pizzeria.hpp"
 #include "mocks/PizzaMock.hpp"
+#include "DummyTimer.hpp"
 
 using namespace std;
 using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName");
+    DummyTimer dt;
+    Pizzeria pizzeria = Pizzeria("dummyName", dt);
 };
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
