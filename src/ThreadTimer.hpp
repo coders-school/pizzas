@@ -3,7 +3,7 @@
 
 #include <thread>
 
-class ThreadTimer : Timer {
+class ThreadTimer : public Timer {
 public:
     void sleep_for(minutes duration) override
     {
