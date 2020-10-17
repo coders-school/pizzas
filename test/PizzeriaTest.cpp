@@ -4,14 +4,14 @@
 #include "Margherita.hpp"
 #include "Pizzeria.hpp"
 #include "mocks/PizzaMock.hpp"
-#include "mocks/DummyTimer.hpp"
+#include "mocks/MockTimer.hpp"
 
 using namespace std;
 using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test {
 public:
-    DummyTimer dt;
+    MockTimer dt;
     Pizzeria pizzeria = Pizzeria("dummyName", dt);
 };
 
