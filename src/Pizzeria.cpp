@@ -3,7 +3,7 @@
 #include <iostream>
 #include <numeric>
 
-Pizzeria::Pizzeria(std::string const& name, Timer timer)
+Pizzeria::Pizzeria(std::string const& name, Timer& timer)
     : name_(name)
     , orders_()
     , timer_(timer)
