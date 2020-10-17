@@ -3,7 +3,7 @@
 
 class DummyTimer : Timer {
 public:
-    void sleep_for(minutes duration)
+    void sleep_for(minutes duration) override
     {
     }
 };
