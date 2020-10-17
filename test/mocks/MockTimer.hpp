@@ -1,9 +1,9 @@
 #pragma once
-#include "Timer.hpp"
+#include "gmock/gmock.h"
+#include "ThreadTimer.hpp"
 
-class MockTimer : public Timer {
+
+class MockTimer : public ThreadTimer {
 public:
-    void sleep_for(minutes duration) override
-    {
-    }
+    MOCK_METHOD(void, sleep_for,(minutes duration), (override));
 };
