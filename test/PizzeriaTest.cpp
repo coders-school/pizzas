@@ -65,35 +65,37 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock) {
     delete mock;
 }
 
-TEST(PizzeriaTestMain, shouldCalculateOrderLikeInMainFunction){
+TEST_F(PizzeriaTest, shouldCalculateOrderLikeInMainFunction) {
     // Given
-    constexpr double mockFirstPrice = 20.0;
-    constexpr double mockSecondPrice = 25.0;
-    constexpr char mockFirstName[] = "Pizza mock first";
-    constexpr char mockSecondName[] = "Pizza mock second";
-    constexpr minutes mockFirstBakingTime{10};
-    constexpr minutes mockSecondBakingTime{5};
+    constexpr double niceMockPizzaPrice = 20.0;
+    constexpr int niceMockPizaaBakingTime = 5;
 
-    StrictMock<TimeMock> tm;
-    Pizzeria bravo("Bravo Pizza", tm);
-    StrictMock<PizzaMock> pm1;
-    NiceMock<PizzaMock> pm2;
-    Pizzas pizzas = {new PizzaStub{"stub"}, &pm1, &pm2};
+    constexpr double strictMockPizzaPrice = 22.0;
+    constexpr int strictMockPizaaBakingTime = 7;
 
-    EXPECT_CALL(pm1, getPrice()).WillOnce(Return(mockFirstPrice));
-    EXPECT_CALL(pm1, getName()).WillOnce(Return(mockFirstName));
-    EXPECT_CALL(pm1, getBakingTime()).WillOnce(Return(mockFirstBakingTime));
-    EXPECT_CALL(pm2, getPrice()).WillOnce(Return(mockSecondPrice));
-    EXPECT_CALL(pm2, getName()).WillOnce(Return(mockSecondName));
-    EXPECT_CALL(pm2, getBakingTime()).WillOnce(Return(mockSecondBakingTime));
-    EXPECT_CALL(tm, sleep_for).Times(3);
+    std::shared_ptr<PizzaStub> pizzaStub = std::make_shared<PizzaStub>("StubPizza");
+    StrictMock<PizzaMock> strictPizza{};
+    NiceMock<PizzaMock> nicePizza{};
+    Pizzas pizzas = {pizzaStub.get(), &nicePizza, &strictPizza};
+
+    EXPECT_CALL(nicePizza, getPrice()).WillRepeatedly(Return(niceMockPizzaPrice));
+    EXPECT_CALL(nicePizza, getName()).WillRepeatedly(Return("NiceMockPizza"));
+    EXPECT_CALL(nicePizza, getBakingTime()).WillRepeatedly(Return(minutes(niceMockPizaaBakingTime)));
+
+    EXPECT_CALL(strictPizza, getPrice()).WillRepeatedly(Return(strictMockPizzaPrice));
+    EXPECT_CALL(strictPizza, getName()).WillRepeatedly(Return("StrictMockPizza"));
+    EXPECT_CALL(strictPizza, getBakingTime()).WillRepeatedly(Return(minutes(strictMockPizaaBakingTime)));
+
+    EXPECT_CALL(tm, sleep_for(pizzaStub->getBakingTime()));
+    EXPECT_CALL(tm, sleep_for(minutes(niceMockPizaaBakingTime)));
+    EXPECT_CALL(tm, sleep_for(minutes(strictMockPizaaBakingTime)));
 
     // When
-    auto orderId = bravo.makeOrder(pizzas);
-    auto price = bravo.calculatePrice(orderId);
-    bravo.bakePizzas(orderId);
-    bravo.completeOrder(orderId);
+    auto orderId = pizzeria.makeOrder(pizzas);
+    auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
 
     // Then
-    ASSERT_EQ(price, mockFirstPrice + mockSecondPrice);
+    ASSERT_EQ(price, strictMockPizzaPrice + niceMockPizzaPrice + pizzaStub->getPrice());
 }
