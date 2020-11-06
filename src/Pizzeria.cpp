@@ -13,7 +13,7 @@ Pizzeria::Pizzeria(std::string const & name, std::unique_ptr<ITimer> timer)
 int Pizzeria::makeOrder(Pizzas pizzas)
 {
     int orderId = rand() % 1000;
-    orders_.push_back(std::make_tuple(orderId, pizzas, timer_.now(), Status::New));
+    orders_.push_back(std::make_tuple(orderId, pizzas, timer_ptr->now(), Status::New));
     return orderId;
 }
 

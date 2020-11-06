@@ -30,6 +30,5 @@ private:
     std::string name_;
     std::vector<Order> orders_;
     std::unique_ptr<ITimer> timer_ptr = nullptr;
-    Timer timer_;
 };
 
