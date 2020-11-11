@@ -79,8 +79,11 @@ TEST_F(PizzeriaTest, shouldDuplicateMain)
     constexpr minutes funghiBakingTime = minutes(4);
     constexpr minutes margheritaBakingTime = minutes(3);
 
+    constexpr double pizzaStubPrice = 10;
     constexpr double cheaperPizza = 10.99;
     constexpr double moreExpensivePizza = 250.0;
+
+    constexpr double expectedPrice = cheaperPizza + moreExpensivePizza + 3 * pizzaStubPrice;
 
     NiceMock<PizzaMock> niceMockPizza{};
     StrictMock<PizzaMock> strictMockPizza{};
@@ -104,4 +107,6 @@ TEST_F(PizzeriaTest, shouldDuplicateMain)
     auto price = bravo.calculatePrice(orderId);
     bravo.bakePizzas(orderId);
     bravo.completeOrder(orderId);
+
+    ASSERT_EQ(expectedPrice, price);
 }
