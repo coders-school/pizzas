@@ -21,10 +21,6 @@ public:
     Pizzeria pizzeria = Pizzeria("dummyName", mockTimer);
 };
 
-struct PizzeriaTestMain : public ::testing::Test {
-    StrictMock<MockTimer> mockTimer;
-};
-
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
 {
     // Given
@@ -78,7 +74,7 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
     delete mock;
 }
 
-TEST_F(PizzeriaTestMain, shouldDuplicateMain)
+TEST_F(PizzeriaTest, shouldDuplicateMain)
 {
     constexpr minutes funghiBakingTime = minutes(4);
     constexpr minutes margheritaBakingTime = minutes(3);
