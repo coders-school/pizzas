@@ -15,6 +15,12 @@ constexpr int calledOneTime = 1;
 constexpr int calledTwoTimes = 2;
 constexpr int calledThreeTimes = 3;
 
+constexpr minutes funghiBakingTime = minutes(4);
+constexpr minutes margheritaBakingTime = minutes(3);
+
+constexpr double margheritaPrice = 25;
+constexpr double funghiPrice = 30;
+
 struct PizzeriaTest : public ::testing::Test {
 public:
     StrictMock<MockTimer> mockTimer;
@@ -23,15 +29,17 @@ public:
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
 {
+    constexpr double expectedPrice = margheritaPrice + funghiPrice;
+
     // Given
-    Pizzas pizzas = {new Margherita{25.0}, new Funghi{30.0}};
+    Pizzas pizzas = {new Margherita{margheritaPrice}, new Funghi{funghiPrice}};
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
 
     // Then
-    ASSERT_EQ(55, price);
+    ASSERT_EQ(expectedPrice, price);
 }
 
 TEST_F(PizzeriaTest, bakeDummyPizza)
@@ -59,26 +67,26 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {
+    constexpr double fourtyPounds = 40;
+    constexpr double expectedPrice = fourtyPounds;
+
     // Given
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
-    EXPECT_CALL(*mock, getPrice()).WillOnce(Return(40.0));
+    EXPECT_CALL(*mock, getPrice()).WillOnce(Return(fourtyPounds));
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
 
     // Then
-    ASSERT_EQ(40, price);
+    ASSERT_EQ(expectedPrice, price);
 
     delete mock;
 }
 
 TEST_F(PizzeriaTest, shouldDuplicateMain)
 {
-    constexpr minutes funghiBakingTime = minutes(4);
-    constexpr minutes margheritaBakingTime = minutes(3);
-
     constexpr double pizzaStubPrice = 10;
     constexpr double cheaperPizza = 10.99;
     constexpr double moreExpensivePizza = 250.0;
