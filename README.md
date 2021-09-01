@@ -4,8 +4,8 @@
 
 Znajdź i popraw błędy w programie przy użyciu debuggera gdb/lldb. Po poprawkach wszystkie testy powinny przechodzić.
 
-+10 XP za poprawienie błędów w programie
-+3 XP za wykonanie tej pracy domowej do 22.09.2021 do końca dnia
+* +10 XP za poprawienie błędów w programie
+* +3 XP za wykonanie tej pracy domowej do 22.09.2021 do końca dnia
 
 ## Praca na zajęciach z testowania
 
