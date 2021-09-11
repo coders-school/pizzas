@@ -28,4 +28,3 @@ private:
     std::string name_;
     std::vector<Order> orders_;
 };
-
