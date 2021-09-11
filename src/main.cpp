@@ -8,7 +8,7 @@ int main()
     Pizzas pizzas = {new Margherita{25.0}, new Funghi{30.0}};
 
     auto orderId = bravo.makeOrder(pizzas);
-    auto price = bravo.calculatePrice(orderId);
+    [[maybe_unused]] auto price = bravo.calculatePrice(orderId);
     bravo.bakePizzas(orderId);
     bravo.completeOrder(orderId);
 

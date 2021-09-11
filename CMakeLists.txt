@@ -52,6 +52,11 @@ add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
+#MyPart
+set(MYFLAGS_DEBUG -Wall -Wextra -Werror -Wpedantic -g)
+add_executable(${PROJECT_NAME}-debug src/main.cpp ${SRC_LIST})
+target_compile_options(${PROJECT_NAME}-debug PRIVATE ${MYFLAGS_DEBUG})
+#EndOfMyPart
 
 set(TEST_SRC_LIST
     test/PizzeriaTest.cpp
@@ -61,6 +66,11 @@ set(TEST_SRC_LIST
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+
+#MyPart
+add_executable(${PROJECT_NAME}-ut-debug ${TEST_SRC_LIST} ${SRC_LIST})
+target_compile_options(${PROJECT_NAME}-ut-debug PRIVATE ${MYFLAGS_DEBUG})
+#EndOfMyPart
 
 enable_testing()
 add_test(NAME PizzasTests COMMAND ${PROJECT_NAME}-ut)
