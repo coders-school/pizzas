@@ -53,7 +53,7 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 #MyPart
-set(MYFLAGS_DEBUG -Wall -Wextra -Werror -Wpedantic -g)
+set(MYFLAGS_DEBUG -g)
 add_executable(${PROJECT_NAME}-debug src/main.cpp ${SRC_LIST})
 target_compile_options(${PROJECT_NAME}-debug PRIVATE ${MYFLAGS_DEBUG})
 #EndOfMyPart
