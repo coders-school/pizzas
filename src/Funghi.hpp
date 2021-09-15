@@ -4,6 +4,6 @@
 class Funghi : public Pizza
 {
 public:
-    Funghi() = delete;
+    Funghi() = default;
     Funghi(double price);
 };

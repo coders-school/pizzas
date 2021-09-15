@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/linux/workspace/pizzas/src/Pizza.cpp
+Pizza.hpp
+/home/linux/workspace/pizzas/src/Pizza.hpp
+
+/home/linux/workspace/pizzas/src/Pizza.hpp
+list
+-
+set
+-
+chrono
+-
+string
+-
+
+/home/linux/workspace/pizzas/src/Pizzeria.cpp
+Pizzeria.hpp
+/home/linux/workspace/pizzas/src/Pizzeria.hpp
+numeric
+-
+algorithm
+-
+thread
+-
+iostream
+-
+
+/home/linux/workspace/pizzas/src/Pizzeria.hpp
+string
+-
+tuple
+-
+vector
+-
+chrono
+-
+Pizza.hpp
+/home/linux/workspace/pizzas/src/Pizza.hpp
+
