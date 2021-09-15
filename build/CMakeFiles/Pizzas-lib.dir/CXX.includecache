@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/linux/workspace/pizzas/src/Pizza.cpp
-Pizza.hpp
-/home/linux/workspace/pizzas/src/Pizza.hpp
-
 /home/linux/workspace/pizzas/src/Pizza.hpp
 list
 -
@@ -23,13 +19,13 @@ string
 /home/linux/workspace/pizzas/src/Pizzeria.cpp
 Pizzeria.hpp
 /home/linux/workspace/pizzas/src/Pizzeria.hpp
-numeric
--
 algorithm
 -
-thread
--
 iostream
+-
+numeric
+-
+thread
 -
 
 /home/linux/workspace/pizzas/src/Pizzeria.hpp

@@ -41,14 +41,14 @@ gtest/gtest.h
 -
 string
 -
-mocks/PizzaMock.hpp
-/home/linux/workspace/pizzas/test/mocks/PizzaMock.hpp
-Pizzeria.hpp
-/home/linux/workspace/pizzas/test/Pizzeria.hpp
-Margherita.hpp
-/home/linux/workspace/pizzas/test/Margherita.hpp
 Funghi.hpp
 /home/linux/workspace/pizzas/test/Funghi.hpp
+Margherita.hpp
+/home/linux/workspace/pizzas/test/Margherita.hpp
+Pizzeria.hpp
+/home/linux/workspace/pizzas/test/Pizzeria.hpp
+mocks/PizzaMock.hpp
+/home/linux/workspace/pizzas/test/mocks/PizzaMock.hpp
 
 /home/linux/workspace/pizzas/test/mocks/PizzaMock.hpp
 Pizza.hpp
