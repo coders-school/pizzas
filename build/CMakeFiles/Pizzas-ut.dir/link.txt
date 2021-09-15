@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/Pizzas-ut.dir/test/PizzeriaTest.cpp.o CMakeFiles/Pizzas-ut.dir/test/test_main.cpp.o  -o Pizzas-ut  lib/libgmockd.a libPizzas-lib.a lib/libgtestd.a -lpthread 

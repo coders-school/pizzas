@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/Pizzas.dir/src/main.cpp.o  -o Pizzas  libPizzas-lib.a -lpthread 

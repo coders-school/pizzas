@@ -1,2 +1,0 @@
-/usr/bin/ar qc libPizzas-lib.a  CMakeFiles/Pizzas-lib.dir/src/Pizza.cpp.o CMakeFiles/Pizzas-lib.dir/src/Margherita.cpp.o CMakeFiles/Pizzas-lib.dir/src/Funghi.cpp.o CMakeFiles/Pizzas-lib.dir/src/Pizzeria.cpp.o
-/usr/bin/ranlib libPizzas-lib.a
