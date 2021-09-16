@@ -27,15 +27,13 @@ double Pizzeria::calculatePrice(int orderId)
     {
         std::get<Status>(*order) = Status::Paid;
         auto pizzas = std::get<Pizzas>(*order);
-        result = std::accumulate(pizzas.begin(),
+        return std::accumulate(pizzas.begin(),
                                pizzas.end(),
                                0.0,
                                [](double previousSum, Pizza *pizza)
                                {
                                    return previousSum + pizza->getPrice();
                                });
-        std::cout << result << '\n';
-        return result;
     }
     else 
     {
