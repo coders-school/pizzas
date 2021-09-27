@@ -50,7 +50,7 @@ set(SRC_LIST
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 
 set(TEST_SRC_LIST
