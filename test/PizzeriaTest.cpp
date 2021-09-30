@@ -5,13 +5,16 @@
 #include "Margherita.hpp"
 #include "Funghi.hpp"
 
+#include "mocks/TimerMock.hpp"
+
 using namespace std;
 using namespace ::testing;
 
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName"); 
+    StrictMock<TimerMock> timerMock;
+    Pizzeria pizzeria = Pizzeria("dummyName", timerMock);
 };
 
 
