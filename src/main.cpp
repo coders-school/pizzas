@@ -1,9 +1,8 @@
-#include "Margherita.hpp"
 #include "Funghi.hpp"
+#include "Margherita.hpp"
 #include "Pizzeria.hpp"
 
-int main()
-{
+int main() {
     Pizzeria bravo("Bravo Pizza");
     Pizzas pizzas = {new Margherita{25.0}, new Funghi{30.0}};
 
