@@ -65,7 +65,7 @@ echo -e $BOLD "Performing checks on $FILE" $DEFAULT
 
 # Part 1
 positive_lookup "\${PROJECT_NAME}" "[$]\{PROJECT_NAME\}"
-positive_lookup "source files list in the variable named with UPPERCASE_WITH_UNDERSCORE convention" "set\([A-Z_]*(\s+(.*\.cpp))+\)"
+positive_lookup "source files list in the variable named with UPPERCASE_WITH_UNDERSCORE convention" "set\([A-Z_]*\s+(.*cpp\s+)+\)"
 positive_lookup "static library with source files list or cpp files mentioned directly" "add_library\(.*STATIC.*(\s.*cpp)+\)|add_library\(.*STATIC\s+([\$\{A-Z_\}]*)\)"
 negative_lookup "static library should not have main.cpp" "add_library\(.*STATIC(\s.*\.cpp)*(\s+main\.cpp)+\)"
 positive_lookup "executable with main.cpp" "add_executable\([$]{PROJECT_NAME}\s+(.*)?main\.cpp\)"
