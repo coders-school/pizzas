@@ -1,0 +1,15 @@
+name: CMake homework
+
+on: [push, pull_request]
+
+jobs:
+  checker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@master
+    - name: Run check.sh
+      run: |
+        chmod +x .github/scripts/check.sh
+        sudo apt install -y pcregrep
+        .github/scripts/check.sh CMakeLists.txt
