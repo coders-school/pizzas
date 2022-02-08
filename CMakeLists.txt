@@ -61,10 +61,10 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-test ${FILE_LIST_TEST})
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib)
 
 enable_testing()
-add_test(NAME PizzasTests COMMAND ${PROJECT_NAME}-ut)
+add_test(NAME PizzasTests COMMAND ${PROJECT_NAME}-test)
 
 
 # TODO: Write proper build system :)
