@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(Pizzas)
 
-
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -56,7 +55,7 @@ set(FILE_LIST_TEST
 include_directories(src)
 include_directories(test)
 
-add_library(${PROJECT_NAME}-lib ${FILE_LIST_SRC})
+add_library(${PROJECT_NAME}-lib STATIC ${FILE_LIST_SRC})
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
