@@ -40,14 +40,14 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 
-set(File_list_SRC 
+set(FILE_LIST_SRC 
     src/Funghi.cpp
     src/Margherita.cpp
     src/Pizza.cpp
     src/Pizzeria.cpp
 )
 
-set(File_list_TEST
+set(FILE_LIST_TEST
     test/PizzeriaTest.cpp
     test/test_main.cpp
 )
@@ -56,8 +56,8 @@ set(File_list_TEST
 include_directories(src)
 include_directories(test)
 
-add_library(${PROJECT_NAME}-lib ${File_list_SRC})
-add_library(${PROJECT_NAME}-test_lib ${File_list_TEST})
+add_library(${PROJECT_NAME}-lib ${FILE_LIST_SRC})
+add_library(${PROJECT_NAME}-test_lib ${FILE_LIST_TEST})
 
 
 
@@ -66,7 +66,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 
 link_libraries(gmock)
-add_executable(${PROJECT_NAME}-test ${File_list_TEST})
+add_executable(${PROJECT_NAME}-test ${FILE_LIST_TEST})
 target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib)
 
 enable_testing()
