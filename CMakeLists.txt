@@ -57,13 +57,8 @@ include_directories(src)
 include_directories(test)
 
 add_library(${PROJECT_NAME}-lib ${FILE_LIST_SRC})
-add_library(${PROJECT_NAME}-test_lib ${FILE_LIST_TEST})
-
-
-
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
-
 
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-test ${FILE_LIST_TEST})
