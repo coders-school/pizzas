@@ -64,7 +64,7 @@ add_executable(${PROJECT_NAME}-ut ${FILE_LIST_TEST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
 enable_testing()
-add_test(NAME PizzasTests COMMAND ${PROJECT_NAME}-ut)
+add_test(PizzasTests ${PROJECT_NAME}-ut)
 
 
 # TODO: Write proper build system :)
