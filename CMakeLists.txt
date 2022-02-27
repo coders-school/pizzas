@@ -9,10 +9,12 @@ set(FILE_LIST_SRC
     src/Funghi.cpp 
     src/Margherita.cpp 
     src/Pizza.cpp 
-    src/Pizzeria.cpp)
+    src/Pizzeria.cpp
+)
 set(FILE_LIST_TEST
     test/PizzeriaTest.cpp 
-    test/test_main.cpp)
+    test/test_main.cpp
+)
 
 include_directories(src)
 include_directories(test)
