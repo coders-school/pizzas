@@ -5,8 +5,14 @@ set(PROJECT_NAME Pizzas)
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 17)
-set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
-set(SRC_LIST_TEST test/PizzeriaTest.cpp test/test_main.cpp)
+set(SRC_LIST 
+    src/Funghi.cpp 
+    src/Margherita.cpp 
+    src/Pizza.cpp 
+    src/Pizzeria.cpp)
+set(SRC_LIST_TEST 
+    test/PizzeriaTest.cpp 
+    test/test_main.cpp)
 
 include_directories(src)
 include_directories(test)
