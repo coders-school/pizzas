@@ -24,7 +24,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_library(${PROJECT_NAME}-lib STATIC ${File_list_SRC })
+add_library(${PROJECT_NAME}-lib STATIC ${File_list_SRC})
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -lphtread)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
