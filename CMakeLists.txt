@@ -16,7 +16,7 @@ target_compile_options(${PROJECT_NAME}-lib
 target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
 
 # main app target
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 target_compile_options(${PROJECT_NAME} 
                       PRIVATE -Wall -Wextra -pedantic -Wconversion)
