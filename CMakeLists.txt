@@ -34,3 +34,10 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Wconversion)
 target_compile_features(${PROJECT_NAME}-lib PRIVATE cxx_std_17)
+
+# mock target
+add_library(${PROJECT_NAME}-mocks INTERFACE)
+target_link_libraries(${PROJECT_NAME}-mocks INTERFACE ${PROJECT_NAME}-lib)
+target_compile_options(${PROJECT_NAME}-mocks INTERFACE -Wall -Wextra -pedantic -Wconversion)
+target_compile_features(${PROJECT_NAME}-mocks INTERFACE cxx_std_17)
+target_include_directories(${PROJECT_NAME}-mocks INTERFACE test/mocks)
