@@ -14,11 +14,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # common source files
-set(SRC_LIST
-    src/Pizza.cpp
-    src/Pizzeria.cpp
-    src/Funghi.cpp
-    src/Margherita.cpp)
+set(SRC_LIST src/Pizza.cpp src/Pizzeria.cpp src/Funghi.cpp src/Margherita.cpp)
 
 # test source files only
 Set(TEST_SRC 
