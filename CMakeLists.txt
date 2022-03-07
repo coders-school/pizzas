@@ -41,3 +41,13 @@ target_link_libraries(${PROJECT_NAME}-mocks INTERFACE ${PROJECT_NAME}-lib)
 target_compile_options(${PROJECT_NAME}-mocks INTERFACE -Wall -Wextra -pedantic -Wconversion)
 target_compile_features(${PROJECT_NAME}-mocks INTERFACE cxx_std_17)
 target_include_directories(${PROJECT_NAME}-mocks INTERFACE test/mocks)
+
+# test target
+add_executable(${PROJECT_NAME}-ut ${TEST_SRC})
+target_link_libraries(${PROJECT_NAME}-ut
+                      ${PROJECT_NAME}-lib 
+                      ${PROJECT_NAME}-mocks
+                      gtest_main 
+                      gmock_main)
+target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
+target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_17)
