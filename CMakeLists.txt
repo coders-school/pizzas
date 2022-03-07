@@ -3,6 +3,15 @@ cmake_minimum_required(VERSION 3.11.0)
 project(Pizzas 
         LANGUAGES CXX)
 
+# prepare Google Test
+include(FetchContent)
+FetchContent_Declare(
+   googletest
+   GIT_REPOSITORY https://github.com/google/googletest
+   GIT_TAG main)
+# For Windows: Prevent overriding the parent projec's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 set(SRC_LIST
     src/Pizza.cpp
     src/Pizzeria.cpp
