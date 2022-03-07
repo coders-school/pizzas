@@ -7,7 +7,7 @@ set(SRC_LIST
     src/Pizza.cpp
     src/Pizzeria.cpp
     src/Funghi.cpp
-    src/Margerita.cpp)
+    src/Margherita.cpp)
 
 # library target
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
