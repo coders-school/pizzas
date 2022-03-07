@@ -4,10 +4,10 @@ project(Pizzas
         LANGUAGES CXX)
 
 set(SRC_LIST
-    Pizza.cpp
-    Pizzeria.cpp
-    Funghi.cpp
-    Margerita.cpp)
+    src/Pizza.cpp
+    src/Pizzeria.cpp
+    src/Funghi.cpp
+    src/Margerita.cpp)
 
 # library target
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
