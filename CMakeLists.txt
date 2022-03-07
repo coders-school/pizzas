@@ -3,16 +3,6 @@ cmake_minimum_required(VERSION 3.11.0)
 project(Pizzas 
         LANGUAGES CXX)
 
-# prepare Google Test
-include(FetchContent)
-FetchContent_Declare(
-   googletest
-   GIT_REPOSITORY https://github.com/google/googletest
-   GIT_TAG main)
-# For Windows: Prevent overriding the parent projec's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
 # common source files
 set(SRC_LIST src/Pizza.cpp src/Pizzeria.cpp src/Funghi.cpp src/Margherita.cpp)
 
@@ -47,6 +37,15 @@ target_link_libraries(${PROJECT_NAME}-ut
                       gmock_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_17)
+
+# prepare Google Test
+include(FetchContent)
+FetchContent_Declare(
+   googletest
+   GIT_REPOSITORY https://github.com/google/googletest
+   GIT_TAG main)
+
+FetchContent_MakeAvailable(googletest)
 
 # enable testing
 enable_testing()
