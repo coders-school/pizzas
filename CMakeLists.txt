@@ -33,7 +33,7 @@ target_include_directories(${PROJECT_NAME}-lib PUBLIC src/)
 
 # main app target
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib pthread)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Wconversion)
 target_compile_features(${PROJECT_NAME}-lib PRIVATE cxx_std_17)
 
