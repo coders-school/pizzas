@@ -5,15 +5,15 @@ project(Pizzas
 
 # common source files
 set(FILE_LIST_SRC
-    src/Pizza.cpp
-    src/Pizzeria.cpp 
-    src/Funghi.cpp
-    src/Margherita.cpp)
-
-# test source files only
-set(TEST_LIST_SRC 
-    test/test_main.cpp 
-    test/PizzeriaTest.cpp)
+    src/Funghi.cpp 
+    src/Margherita.cpp 
+    src/Pizza.cpp 
+    src/Pizzeria.cpp
+)
+set(FILE_LIST_TEST
+    test/PizzeriaTest.cpp 
+    test/test_main.cpp
+)
 
 # library target
 add_library(${PROJECT_NAME}-lib STATIC ${FILE_LIST_SRC})
@@ -35,7 +35,7 @@ target_compile_features(${PROJECT_NAME}-mocks INTERFACE cxx_std_17)
 target_include_directories(${PROJECT_NAME}-mocks INTERFACE test/mocks)
 
 # test target
-add_executable(${PROJECT_NAME}-ut ${TEST_LIST_SRC})
+add_executable(${PROJECT_NAME}-ut ${FILE_LIST_TEST})
 target_link_libraries(${PROJECT_NAME}-ut
                       ${PROJECT_NAME}-lib 
                       ${PROJECT_NAME}-mocks
