@@ -18,6 +18,11 @@ set(SRC_LIST
     src/Funghi.cpp
     src/Margherita.cpp)
 
+# test source files only
+Set(TEST_SRC 
+    test/test_main.cpp
+    test/PizzeriaTest.cpp)
+
 # library target
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 target_compile_options(${PROJECT_NAME}-lib 
