@@ -4,18 +4,23 @@ project(Pizzas
         LANGUAGES CXX)
 
 # common source files
-set(SRC_LIST Pizza.cpp Pizzeria.cpp Funghi.cpp Margherita.cpp)
-list(TRANSFORM SRC_LIST PREPEND "src/")
+set(FILE_LIST_SRC
+    src/Pizza.cpp
+    src/Pizzeria.cpp 
+    src/Funghi.cpp
+    src/Margherita.cpp)
+
 # test source files only
-set(TEST_SRC test_main.cpp PizzeriaTest.cpp)
-list(TRANSFORM TEST_SRC PREPEND "test/")
+set(TEST_LIST_SRC 
+    test/test_main.cpp 
+    test/PizzeriaTest.cpp)
 
 # library target
-add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+add_library(${PROJECT_NAME}-lib STATIC ${FILE_LIST_SRC})
 target_compile_options(${PROJECT_NAME}-lib  PUBLIC -Wall -Wextra -pedantic -Wconversion)
 target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
 target_include_directories(${PROJECT_NAME}-lib PUBLIC src/)
-# target_sources(${PROJECT_NAME}-lib PRIVATE src/)
+
 # main app target
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib pthread)
@@ -30,7 +35,7 @@ target_compile_features(${PROJECT_NAME}-mocks INTERFACE cxx_std_17)
 target_include_directories(${PROJECT_NAME}-mocks INTERFACE test/mocks)
 
 # test target
-add_executable(${PROJECT_NAME}-ut ${TEST_SRC})
+add_executable(${PROJECT_NAME}-ut ${TEST_LIST_SRC})
 target_link_libraries(${PROJECT_NAME}-ut
                       ${PROJECT_NAME}-lib 
                       ${PROJECT_NAME}-mocks
