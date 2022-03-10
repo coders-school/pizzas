@@ -14,16 +14,19 @@ set(FILE_LIST_SRC
 set(FILE_LIST_TEST
     test/PizzeriaTest.cpp 
     test/test_main.cpp
+    test/mocks/PizzaMock.hpp
 )
 
 include_directories(src)
 include_directories(test)
+include_directories(test/mocks)
 
 include(FetchContent)
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 )
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_library(${PROJECT_NAME}-lib STATIC ${FILE_LIST_SRC})
@@ -34,7 +37,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${FILE_LIST_TEST})
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic -lphtread)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest_main)
 
 enable_testing()
 add_test(NAME PizzaTests COMMAND ${PROJECT_NAME}-ut)
