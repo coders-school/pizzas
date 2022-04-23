@@ -38,7 +38,7 @@ set(TEST_SRC_LIST
         test/PizzeriaTest.cpp  
         test/test_main.cpp 
     )
-    
+
 # create executable
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})   
 
@@ -49,5 +49,7 @@ target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest gmock)
 set_target_properties(${PROJECT_NAME}-ut PROPERTIES
                        CXX_STANDARD 17
                        CMAKE_CXX_STANDARD_REQUIRED ON)  
+enable_testing()
+add_test(NAME PizzasTests COMMAND ${PROJECT_NAME}-ut)
 
 # TODO: Write proper build system :)
