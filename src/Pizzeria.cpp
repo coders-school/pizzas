@@ -52,6 +52,7 @@ void Pizzeria::bakePizzas(int orderId)
             std::this_thread::sleep_for(pizza->getBakingTime());
         }
         std::get<Status>(*order) = Status::Baked;
+        return;
     }
     throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
 }
