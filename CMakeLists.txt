@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.11.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp src/main.cpp)
+set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -15,19 +15,13 @@ FetchContent_Declare(
 project(Pizzas)
 enable_testing()
 
-add_library(LIB STATIC src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
+add_library(LIB STATIC ${SRC_LIST})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp test/test_main.cpp)
-
-set(FLAGS -Wall -Wextra -Werror -Wpedantic - Wconversion -O3)
-
-add_compile_options(LIB PRIVATE ${FLAGS})
-add_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})
-add_compile_options(${PROJECT_NAME}-ut PRIVATE ${FLAGS})
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${LIB} pthred.h)
 target_link_libraries(${PROJECT_NAME}-ut ${LIB})
 
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-ut )
+gtest_discover_tests(${PROJECT_NAME}-ut)
