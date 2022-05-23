@@ -1,0 +1,6 @@
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/rebuild_cache.dir
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/edit_cache.dir
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/test.dir
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/Pizzas-ut.dir
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/Pizzas.dir
+/home/andrzej/Desktop/Pizza/pizzas/build/CMakeFiles/LIB.dir

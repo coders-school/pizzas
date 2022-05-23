@@ -18,7 +18,7 @@ enable_testing()
 add_library(LIB STATIC ${SRC_LIST})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp test/test_main.cpp)
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${LIB} pthred.h)
 target_link_libraries(${PROJECT_NAME}-ut ${LIB})

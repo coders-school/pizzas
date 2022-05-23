@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLIB.a  CMakeFiles/LIB.dir/src/Funghi.cpp.o CMakeFiles/LIB.dir/src/Margherita.cpp.o CMakeFiles/LIB.dir/src/Pizza.cpp.o CMakeFiles/LIB.dir/src/Pizzeria.cpp.o
+/usr/bin/ranlib libLIB.a
