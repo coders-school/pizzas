@@ -18,11 +18,10 @@ enable_testing()
 add_library(LIB STATIC ${SRC_LIST})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
+add_executable(${PROJECT_NAME}_UT test/PizzeriaTest.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${LIB} pthred.h)
-target_link_libraries(${PROJECT_NAME}-ut ${LIB})
+target_link_libraries(${PROJECT_NAME}_UT ${LIB} gtest_main)
 
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-ut)
-add_test(NAME UtTest COMMAND ${PROJECT_NAME}-ut)
+gtest_discover_tests(${PROJECT_NAME}_UT)
