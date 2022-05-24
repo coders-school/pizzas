@@ -25,3 +25,4 @@ target_link_libraries(${PROJECT_NAME}-ut ${LIB})
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
+add_test(NAME UtTest COMMAND ${PROJECT_NAME}-ut)
