@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/Pizzas-ut.dir/test/PizzeriaTest.cpp.o  -o Pizzas-ut 

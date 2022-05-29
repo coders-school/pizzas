@@ -1,5 +1,0 @@
-if(EXISTS "/home/andrzej/Desktop/Pizza/pizzas/build/Pizzas-ut[1]_tests.cmake")
-  include("/home/andrzej/Desktop/Pizza/pizzas/build/Pizzas-ut[1]_tests.cmake")
-else()
-  add_test(Pizzas-ut_NOT_BUILT Pizzas-ut_NOT_BUILT)
-endif()
