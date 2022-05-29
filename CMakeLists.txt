@@ -24,7 +24,8 @@ add_library(LIB STATIC ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
 add_executable(${PROJECT_NAME}_UT test/PizzeriaTest.cpp)
 
-target_link_libraries(${PROJECT_NAME} ${LIB} pthred.h)
+target_link_libraries(${PROJECT_NAME} ${LIB})
+target_link_libraries(${PROJECT_NAME} pthread)
 target_link_libraries(${PROJECT_NAME}_UT ${LIB})
 target_link_libraries(${PROJECT_NAME}_UT gtest_main)
 
