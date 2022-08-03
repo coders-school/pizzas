@@ -1,3 +1,7 @@
 cmake_minimum_required(VERSION 3.11.0)
 
-# TODO: Write proper build system :)
+cmake_minimum_required(VERSION 3.11.0)
+
+project(pizzas)
+
+add_subdirectory(src)
