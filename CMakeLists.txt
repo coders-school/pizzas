@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.11.0)
  )
 
  add_library(CUSTOM_STATIC_LIB STATIC ${SRC_LIST})
-
+ 
  add_executable(${PROJECT_NAME} src/main.cpp)
  find_package(Threads)
  target_link_libraries(${CUSTON_STATIC_LIB} Threads::Threads)
