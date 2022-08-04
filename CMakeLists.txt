@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.11.0)
 
  project(Pizzas)
- #set(BIN_EXE ${PROJECT_NAME})
  set(SRC_LIST
      src/Funghi.cpp
      src/Margherita.cpp
