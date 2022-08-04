@@ -2,15 +2,7 @@ cmake_minimum_required(VERSION 3.11.0)
 
  project(Pizzas)
  set(BIN_EXE ${PROJECT_NAME})
- set(SRC_LIST src/Funghi.cpp
-                 src/Funghi.hpp
-                 src/Margherita.cpp
-                 src/Margherita.hpp
-                 src/Pizza.cpp
-                 src/Pizza.hpp
-                 src/Pizzeria.cpp
-                 src/Pizzeria.hpp
-                 )
+ set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
 
  add_library(CUSTOM_STATIC_LIB STATIC ${SRC_LIST})
 
