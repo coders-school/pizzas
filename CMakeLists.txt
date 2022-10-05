@@ -12,7 +12,7 @@ FetchContent_Declare(
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAVAILABLE(googletest)
+FetchContent_MakeAvailable(googletest)
 
 # Pthreads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -40,5 +40,9 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 # Tests build
+enable_testing()
+link_libraries(gmock)
 add_executable(${PROJECT_NAME}-UT ${SRC_TESTS_LIST})
 target_link_libraries(${PROJECT_NAME}-UT ${PROJECT_NAME}-lib)
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME}-UT)
