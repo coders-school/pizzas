@@ -30,18 +30,18 @@ add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
 
+enable_testing()
+
 set(SRC_TEST_LIST 
     test/PizzeriaTest.cpp
     test/test_main.cpp
 )
 
+
 add_executable(${PROJECT_NAME}-test ${SRC_TEST_LIST})
 
 target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
 
-enable_testing()
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME}-test)
 add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}-test)
-
-
-
-# TODO: Write proper build system :)
