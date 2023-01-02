@@ -30,10 +30,10 @@ add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
 
-enable_testing()
-
 add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp test/test_main.cpp)
 
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest gmock)
+
+enable_testing()
 
 add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}-ut)
