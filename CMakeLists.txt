@@ -32,10 +32,8 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
 
 enable_testing()
 
-add_executable(${PROJECT_NAME}-test test/PizzeriaTest.cpp test/test_main.cpp)
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp test/test_main.cpp)
 
-target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest gmock)
 
-include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-test)
-add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}_TEST)
+add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}-ut)
