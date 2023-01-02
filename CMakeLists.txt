@@ -32,12 +32,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
 
 enable_testing()
 
-set(SRC_TEST_LIST 
-    test/PizzeriaTest.cpp
-    test/test_main.cpp
-)
-
-add_executable(${PROJECT_NAME}-test ${SRC_TEST_LIST})
+add_executable(${PROJECT_NAME}-test test/PizzeriaTest.cpp test/test_main.cpp)
 
 target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
 
