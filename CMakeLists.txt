@@ -38,3 +38,4 @@ target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-test)
+add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}_TEST)
