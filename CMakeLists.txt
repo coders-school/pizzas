@@ -39,7 +39,6 @@ set(SRC_TEST_LIST
     test/test_main.cpp
 )
 
-
 add_executable(${PROJECT_NAME}-test ${SRC_TEST_LIST})
 
 target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
