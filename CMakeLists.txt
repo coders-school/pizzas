@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.11.0)
 
-project(Pizzas)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -24,22 +22,27 @@ set(SRC_LIST
 
 include_directories(src)
 
+project(Pizzas)
+
+enable_testing()
+
 add_executable(${PROJECT_NAME} src/main.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
 
-enable_testing()
-
 # set(SRC_TEST_LIST 
 #     test/PizzeriaTest.cpp
 #     test/test_main.cpp
 # )
 
+
+
 add_executable(${PROJECT_NAME}-test test/PizzeriaTest.cpp test/test_main.cpp)
 
 target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
 
-include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-test)
+enable_testing()
+
+add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}-test)

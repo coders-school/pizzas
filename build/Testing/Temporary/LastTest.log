@@ -1,0 +1,51 @@
+Start testing: Jan 03 10:12 CET
+----------------------------------------------------------
+1/1 Testing: PizzaTest
+1/1 Test: PizzaTest
+Command: "/home/krzuch/pizzas/build/Pizzas-test"
+Directory: /home/krzuch/pizzas/build
+"PizzaTest" start time: Jan 03 10:12 CET
+Output:
+----------------------------------------------------------
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from PizzeriaTest
+[ RUN      ] PizzeriaTest.priceForMargherita25AndFunghi30ShouldBe55
+/home/krzuch/pizzas/test/PizzeriaTest.cpp:28: Failure
+Expected equality of these values:
+  55
+  price
+    Which is: 60
+[  FAILED  ] PizzeriaTest.priceForMargherita25AndFunghi30ShouldBe55 (0 ms)
+[ RUN      ] PizzeriaTest.bakeDummyPizza
+Baking dummy
+unknown file: Failure
+C++ exception with description "Order with id: 886not found" thrown in the test body.
+[  FAILED  ] PizzeriaTest.bakeDummyPizza (0 ms)
+[ RUN      ] PizzeriaTest.completeOrderWithStubPizza
+Baking STUB
+unknown file: Failure
+C++ exception with description "Order with id: 777not found" thrown in the test body.
+[  FAILED  ] PizzeriaTest.completeOrderWithStubPizza (1002 ms)
+[ RUN      ] PizzeriaTest.calculatePriceForPizzaMock
+[       OK ] PizzeriaTest.calculatePriceForPizzaMock (0 ms)
+[----------] 4 tests from PizzeriaTest (1002 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (1003 ms total)
+[  PASSED  ] 1 test.
+[  FAILED  ] 3 tests, listed below:
+[  FAILED  ] PizzeriaTest.priceForMargherita25AndFunghi30ShouldBe55
+[  FAILED  ] PizzeriaTest.bakeDummyPizza
+[  FAILED  ] PizzeriaTest.completeOrderWithStubPizza
+
+ 3 FAILED TESTS
+<end of output>
+Test time =   1.01 sec
+----------------------------------------------------------
+Test Failed.
+"PizzaTest" end time: Jan 03 10:12 CET
+"PizzaTest" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Jan 03 10:12 CET
