@@ -1,0 +1,5 @@
+if(EXISTS "/home/krzuch/pizzas/build/Pizzas-test[1]_tests.cmake")
+  include("/home/krzuch/pizzas/build/Pizzas-test[1]_tests.cmake")
+else()
+  add_test(Pizzas-test_NOT_BUILT Pizzas-test_NOT_BUILT)
+endif()
