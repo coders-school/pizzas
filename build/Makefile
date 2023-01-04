@@ -172,43 +172,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Pizzas
+# Target rules for targets named pizzas-lib
 
 # Build rule for target.
-Pizzas: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Pizzas
-.PHONY : Pizzas
+pizzas-lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pizzas-lib
+.PHONY : pizzas-lib
 
 # fast build rule for target.
-Pizzas/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas.dir/build.make CMakeFiles/Pizzas.dir/build
-.PHONY : Pizzas/fast
+pizzas-lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/build
+.PHONY : pizzas-lib/fast
 
 #=============================================================================
-# Target rules for targets named Pizzas-lib
+# Target rules for targets named pizzas
 
 # Build rule for target.
-Pizzas-lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Pizzas-lib
-.PHONY : Pizzas-lib
+pizzas: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pizzas
+.PHONY : pizzas
 
 # fast build rule for target.
-Pizzas-lib/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/build
-.PHONY : Pizzas-lib/fast
+pizzas/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas.dir/build.make CMakeFiles/pizzas.dir/build
+.PHONY : pizzas/fast
 
 #=============================================================================
-# Target rules for targets named Pizzas-test
+# Target rules for targets named pizzas-ut
 
 # Build rule for target.
-Pizzas-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Pizzas-test
-.PHONY : Pizzas-test
+pizzas-ut: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pizzas-ut
+.PHONY : pizzas-ut
 
 # fast build rule for target.
-Pizzas-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/build
-.PHONY : Pizzas-test/fast
+pizzas-ut/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/build
+.PHONY : pizzas-ut/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -267,7 +267,7 @@ src/Funghi.o: src/Funghi.cpp.o
 
 # target to build an object file
 src/Funghi.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Funghi.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Funghi.cpp.o
 .PHONY : src/Funghi.cpp.o
 
 src/Funghi.i: src/Funghi.cpp.i
@@ -275,7 +275,7 @@ src/Funghi.i: src/Funghi.cpp.i
 
 # target to preprocess a source file
 src/Funghi.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Funghi.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Funghi.cpp.i
 .PHONY : src/Funghi.cpp.i
 
 src/Funghi.s: src/Funghi.cpp.s
@@ -283,7 +283,7 @@ src/Funghi.s: src/Funghi.cpp.s
 
 # target to generate assembly for a file
 src/Funghi.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Funghi.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Funghi.cpp.s
 .PHONY : src/Funghi.cpp.s
 
 src/Margherita.o: src/Margherita.cpp.o
@@ -291,7 +291,7 @@ src/Margherita.o: src/Margherita.cpp.o
 
 # target to build an object file
 src/Margherita.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Margherita.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Margherita.cpp.o
 .PHONY : src/Margherita.cpp.o
 
 src/Margherita.i: src/Margherita.cpp.i
@@ -299,7 +299,7 @@ src/Margherita.i: src/Margherita.cpp.i
 
 # target to preprocess a source file
 src/Margherita.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Margherita.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Margherita.cpp.i
 .PHONY : src/Margherita.cpp.i
 
 src/Margherita.s: src/Margherita.cpp.s
@@ -307,7 +307,7 @@ src/Margherita.s: src/Margherita.cpp.s
 
 # target to generate assembly for a file
 src/Margherita.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Margherita.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Margherita.cpp.s
 .PHONY : src/Margherita.cpp.s
 
 src/Pizza.o: src/Pizza.cpp.o
@@ -315,7 +315,7 @@ src/Pizza.o: src/Pizza.cpp.o
 
 # target to build an object file
 src/Pizza.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizza.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizza.cpp.o
 .PHONY : src/Pizza.cpp.o
 
 src/Pizza.i: src/Pizza.cpp.i
@@ -323,7 +323,7 @@ src/Pizza.i: src/Pizza.cpp.i
 
 # target to preprocess a source file
 src/Pizza.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizza.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizza.cpp.i
 .PHONY : src/Pizza.cpp.i
 
 src/Pizza.s: src/Pizza.cpp.s
@@ -331,7 +331,7 @@ src/Pizza.s: src/Pizza.cpp.s
 
 # target to generate assembly for a file
 src/Pizza.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizza.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizza.cpp.s
 .PHONY : src/Pizza.cpp.s
 
 src/Pizzeria.o: src/Pizzeria.cpp.o
@@ -339,7 +339,7 @@ src/Pizzeria.o: src/Pizzeria.cpp.o
 
 # target to build an object file
 src/Pizzeria.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizzeria.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizzeria.cpp.o
 .PHONY : src/Pizzeria.cpp.o
 
 src/Pizzeria.i: src/Pizzeria.cpp.i
@@ -347,7 +347,7 @@ src/Pizzeria.i: src/Pizzeria.cpp.i
 
 # target to preprocess a source file
 src/Pizzeria.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizzeria.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizzeria.cpp.i
 .PHONY : src/Pizzeria.cpp.i
 
 src/Pizzeria.s: src/Pizzeria.cpp.s
@@ -355,7 +355,7 @@ src/Pizzeria.s: src/Pizzeria.cpp.s
 
 # target to generate assembly for a file
 src/Pizzeria.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-lib.dir/build.make CMakeFiles/Pizzas-lib.dir/src/Pizzeria.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-lib.dir/build.make CMakeFiles/pizzas-lib.dir/src/Pizzeria.cpp.s
 .PHONY : src/Pizzeria.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -363,7 +363,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas.dir/build.make CMakeFiles/Pizzas.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas.dir/build.make CMakeFiles/pizzas.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -371,7 +371,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas.dir/build.make CMakeFiles/Pizzas.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas.dir/build.make CMakeFiles/pizzas.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -379,7 +379,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas.dir/build.make CMakeFiles/Pizzas.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas.dir/build.make CMakeFiles/pizzas.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 test/PizzeriaTest.o: test/PizzeriaTest.cpp.o
@@ -387,7 +387,7 @@ test/PizzeriaTest.o: test/PizzeriaTest.cpp.o
 
 # target to build an object file
 test/PizzeriaTest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/PizzeriaTest.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/PizzeriaTest.cpp.o
 .PHONY : test/PizzeriaTest.cpp.o
 
 test/PizzeriaTest.i: test/PizzeriaTest.cpp.i
@@ -395,7 +395,7 @@ test/PizzeriaTest.i: test/PizzeriaTest.cpp.i
 
 # target to preprocess a source file
 test/PizzeriaTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/PizzeriaTest.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/PizzeriaTest.cpp.i
 .PHONY : test/PizzeriaTest.cpp.i
 
 test/PizzeriaTest.s: test/PizzeriaTest.cpp.s
@@ -403,7 +403,7 @@ test/PizzeriaTest.s: test/PizzeriaTest.cpp.s
 
 # target to generate assembly for a file
 test/PizzeriaTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/PizzeriaTest.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/PizzeriaTest.cpp.s
 .PHONY : test/PizzeriaTest.cpp.s
 
 test/test_main.o: test/test_main.cpp.o
@@ -411,7 +411,7 @@ test/test_main.o: test/test_main.cpp.o
 
 # target to build an object file
 test/test_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/test_main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/test_main.cpp.o
 .PHONY : test/test_main.cpp.o
 
 test/test_main.i: test/test_main.cpp.i
@@ -419,7 +419,7 @@ test/test_main.i: test/test_main.cpp.i
 
 # target to preprocess a source file
 test/test_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/test_main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/test_main.cpp.i
 .PHONY : test/test_main.cpp.i
 
 test/test_main.s: test/test_main.cpp.s
@@ -427,7 +427,7 @@ test/test_main.s: test/test_main.cpp.s
 
 # target to generate assembly for a file
 test/test_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pizzas-test.dir/build.make CMakeFiles/Pizzas-test.dir/test/test_main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pizzas-ut.dir/build.make CMakeFiles/pizzas-ut.dir/test/test_main.cpp.s
 .PHONY : test/test_main.cpp.s
 
 # Help Target
@@ -443,13 +443,13 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... Pizzas"
-	@echo "... Pizzas-lib"
-	@echo "... Pizzas-test"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... pizzas"
+	@echo "... pizzas-lib"
+	@echo "... pizzas-ut"
 	@echo "... src/Funghi.o"
 	@echo "... src/Funghi.i"
 	@echo "... src/Funghi.s"

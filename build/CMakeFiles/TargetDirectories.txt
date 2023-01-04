@@ -1,6 +1,6 @@
-/home/krzuch/pizzas/build/CMakeFiles/Pizzas.dir
-/home/krzuch/pizzas/build/CMakeFiles/Pizzas-lib.dir
-/home/krzuch/pizzas/build/CMakeFiles/Pizzas-test.dir
+/home/krzuch/pizzas/build/CMakeFiles/pizzas-lib.dir
+/home/krzuch/pizzas/build/CMakeFiles/pizzas.dir
+/home/krzuch/pizzas/build/CMakeFiles/pizzas-ut.dir
 /home/krzuch/pizzas/build/CMakeFiles/test.dir
 /home/krzuch/pizzas/build/CMakeFiles/edit_cache.dir
 /home/krzuch/pizzas/build/CMakeFiles/rebuild_cache.dir

@@ -196,7 +196,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Pizzas
+CMAKE_PROJECT_NAME:STATIC=pizzas
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.12.1
@@ -307,15 +307,6 @@ GTEST_HAS_ABSL:BOOL=OFF
 INSTALL_GTEST:BOOL=ON
 
 //Value Computed by CMake
-Pizzas_BINARY_DIR:STATIC=/home/krzuch/pizzas/build
-
-//Value Computed by CMake
-Pizzas_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Pizzas_SOURCE_DIR:STATIC=/home/krzuch/pizzas
-
-//Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/krzuch/pizzas/build/_deps/googletest-build/googlemock
 
 //Value Computed by CMake
@@ -369,6 +360,15 @@ gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
+
+//Value Computed by CMake
+pizzas_BINARY_DIR:STATIC=/home/krzuch/pizzas/build
+
+//Value Computed by CMake
+pizzas_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+pizzas_SOURCE_DIR:STATIC=/home/krzuch/pizzas
 
 
 ########################

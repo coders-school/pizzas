@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/pizzas.dir/src/main.cpp.o -o pizzas  libpizzas-lib.a 

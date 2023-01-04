@@ -4,6 +4,5 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-add_test(PizzaTest "/home/krzuch/pizzas/build/Pizzas-test")
-set_tests_properties(PizzaTest PROPERTIES  _BACKTRACE_TRIPLES "/home/krzuch/pizzas/CMakeLists.txt;48;add_test;/home/krzuch/pizzas/CMakeLists.txt;0;")
+include("/home/krzuch/pizzas/build/pizzas-ut[1]_include.cmake")
 subdirs("_deps/googletest-build")
