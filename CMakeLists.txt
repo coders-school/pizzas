@@ -25,6 +25,8 @@ SET(SRC_LIST
         src/Pizza.cpp
         src/Pizzeria.cpp
         )
+        
+ include_directories(src)     
 
 set(SRC_TESTS_LIST
         test/test_main.cpp
@@ -43,6 +45,6 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 enable_testing()
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${SRC_TESTS_LIST})
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest gmock)
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
