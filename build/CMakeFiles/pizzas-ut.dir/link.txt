@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/pizzas-ut.dir/test/test_main.cpp.o CMakeFiles/pizzas-ut.dir/test/PizzeriaTest.cpp.o -o pizzas-ut  lib/libgmock.a libpizzas-lib.a lib/libgtest.a 
