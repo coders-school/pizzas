@@ -1,49 +1,48 @@
 cmake_minimum_required(VERSION 3.11.0)
+project(pizzas)
 
+SET(CMAKE_CXX_STANDARD 17)
+
+# Google Test
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        main
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG main
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(CXX_STANDARD 17)
-set(CXX_STANDARD_REQUIRED ON)
+# Pthreads
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
-set(SRC_LIST 
-    src/Funghi.cpp 
-    src/Margherita.cpp 
-    src/Pizza.cpp 
-    src/Pizzeria.cpp
-)
+# File sources
+SET(SRC_LIST
+        src/Funghi.cpp
+        src/Margherita.cpp
+        src/Pizza.cpp
+        src/Pizzeria.cpp
+        )
 
-include_directories(src)
+set(SRC_TESTS_LIST
+        test/test_main.cpp
+        test/PizzeriaTest.cpp
+        )
 
-project(Pizzas)
-
-enable_testing()
-
-add_executable(${PROJECT_NAME} src/main.cpp)
-
+# Library
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+target_link_libraries(${PROJECT_NAME}-lib Threads::Threads)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib -lpthread)
+# Application build
+add_executable(${PROJECT_NAME} src/main.cpp)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
+# Tests build
 enable_testing()
-
-set(SRC_TEST_LIST 
-    test/PizzeriaTest.cpp
-    test/test_main.cpp
-)
-
-
-add_executable(${PROJECT_NAME}-test ${SRC_TEST_LIST})
-
-target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}-lib gtest gmock)
-
+link_libraries(gmock)
+add_executable(${PROJECT_NAME}-ut ${SRC_TESTS_LIST})
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-test)
-add_test(NAME PizzaTest COMMAND ${PROJECT_NAME}-test)
+gtest_discover_tests(${PROJECT_NAME}-ut)
