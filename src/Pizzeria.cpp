@@ -53,7 +53,9 @@ void Pizzeria::bakePizzas(int orderId)
         }
         std::get<Status>(*order) = Status::Baked;
     }
-    throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    else {
+        throw std::invalid_argument("Order with id: " + std::to_string(orderId) + "not found");
+    }
 }
 
 void Pizzeria::completeOrder(int orderId)
