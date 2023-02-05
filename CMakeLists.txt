@@ -28,9 +28,14 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_17)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+
+add_executable(${PROJECT_NAME}-utm test/test_main.cpp)
+target_compile_features(${PROJECT_NAME}-utm PRIVATE cxx_std_17)
+target_link_libraries(${PROJECT_NAME}-utm ${PROJECT_NAME}-lib)
 
 enable_testing()
-add_test(NAME someTests COMMAND ${PROJECT_NAME}-ut)
+add_test(NAME PizzeriaTest COMMAND ${PROJECT_NAME}-ut)
+add_test(NAME test_main COMMAND ${PROJECT_NAME}-utm)
 
