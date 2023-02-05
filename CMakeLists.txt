@@ -20,14 +20,17 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
-add_library(${PROJECT_NAME}-lib ${SRC_LIST})
+add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 target_compile_features(${PROJECT_NAME}-lib PRIVATE cxx_std_17)
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_17)
 
-
-
+enable_testing()
+add_test(NAME someTests COMMAND ${PROJECT_NAME}-ut)
 
