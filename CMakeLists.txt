@@ -14,7 +14,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(SRC_LIST src/Pizza.cpp src/Pizzeria.cpp src/Margherita.cpp src/Funghi.cpp)
+set(SRC_LIST_MAIN src/Pizza.cpp src/Pizzeria.cpp src/Margherita.cpp src/Funghi.cpp)
 
 set(SRC_LIST_TEST test/PizzeriaTest.cpp test/test_main.cpp)
 
@@ -22,7 +22,7 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
-add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST_MAIN})
 target_compile_features(${PROJECT_NAME}-lib PRIVATE cxx_std_17)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
