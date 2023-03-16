@@ -21,7 +21,7 @@ Znajdź i popraw błędy w programie przy użyciu debuggera gdb/lldb. Po poprawk
 ## Praca domowa
 
 1. (10 XP) Napisz klasę TimeMock, którą zastąpisz dummy/stuba napisanego podczas zajęć. Używaj go poprzez StrictMock. Dodaj właściwe `EXPECT_CALL` w kodzie testów.
-2. (15 XP) Dopisz nowy przypadek testowy, w którym powielasz działanie funkcji main.cpp, ale zamawiasz 3 pizze: `StubPizza` oraz 2 różne `MockPizza` (różne nazwy, ceny i czas pieczenia; jedna jako StrictMock, druga jako NaggyMock). Ustaw właściwe `EXPECT_CALL`.
+2. (15 XP) Dopisz nowy przypadek testowy, w którym powielasz działanie funkcji main.cpp, ale zamawiasz 3 pizze: `StubPizza` oraz 2 różne `MockPizza` (różne nazwy, ceny i czas pieczenia; jedna jako StrictMock, druga jako NiceMock). Ustaw właściwe `EXPECT_CALL`.
 3. (5 XP) Utwórz własny plik .github/workflows/module3.yml, który spowoduje, że GitHub automatycznie uruchomi testy. Zobacz, jak to jest zrealizowane w innych repozytoriach [Coders School na GH](https://github.com/coders-school)
 
 Możecie pracować w parach 🙂
