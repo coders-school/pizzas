@@ -1,50 +1,45 @@
-cmake_minimum_required(VERSION 3.16.0)
-project(Pizzas)
+cmake_minimum_required(VERSION 3.11.0)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+ set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-)
+ include(FetchContent)
+ FetchContent_Declare(
+   googletest
+   GIT_REPOSITORY https://github.com/google/googletest.git
+   GIT_TAG        main # release-1.10.0
+ )
+ # For Windows: Prevent overriding the parent project's compiler/linker settings
+ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+ FetchContent_MakeAvailable(googletest)
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+ # Now simply link against gtest or gtest_main as needed. Eg
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
+ project(Pizzas)
 
-set(SRC_LIST
-    src/Funghi.cpp
-    src/Margherita.cpp
-    src/Pizza.cpp
-    src/Pizzeria.cpp)
+ set(SRC_LIST
+     src/Pizza.cpp
+     src/Margherita.cpp
+     src/Funghi.cpp
+     src/Pizzeria.cpp
+ )
 
-set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -O1)
-
-
-add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
-target_compile_options(${PROJECT_NAME}-lib PRIVATE ${FLAGS})
-target_compile_features(${PROJECT_NAME}-lib PRIVATE cxx_std_17)
-
-add_executable(${PROJECT_NAME} src/main.cpp)
-target_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+ include_directories(src)
+ add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+ add_executable(${PROJECT_NAME} src/main.cpp)
+ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 
-enable_testing()
-link_libraries(gmock)
-add_test(NAME pizzasTests COMMAND ${PROJECT_NAME}-ut)
-# TODO: Write proper build system :)
+ set(TEST_SRC_LIST
+     test/PizzeriaTest.cpp
+     test/test_main.cpp
+ )
 
-add_executable(${PROJECT_NAME}-ut test/test_main.cpp test/PizzeriaTest.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
-target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_17)
-target_compile_options(${PROJECT_NAME}-ut PRIVATE ${FLAGS})
+ link_libraries(gmock)
+ add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
+ target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
-include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}-ut)
+ enable_testing()
+
+ include(GoogleTest)
+ gtest_discover_tests(${PROJECT_NAME}-ut)
