@@ -20,10 +20,10 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 set(SRC_LIST
-    ./src/Funghi.cpp
-    ./src/Margherita.cpp
-    ./src/Pizza.cpp
-    ./src/Pizzeria.cpp)
+    src/Funghi.cpp
+    src/Margherita.cpp
+    src/Pizza.cpp
+    src/Pizzeria.cpp)
 
 set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -O0 -g)
 
