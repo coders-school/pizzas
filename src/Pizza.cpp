@@ -13,7 +13,7 @@ std::string Pizza::getName() const
 
 double Pizza::getPrice() const
 {
-    return 30.0;
+    return price_ ;//30.0;
 }
 
 minutes Pizza::getBakingTime() const
