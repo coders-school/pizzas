@@ -17,3 +17,12 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}.lib pthread)
+
+enable_testing()
+
+add_executable(PizzerriaTest test/PizzerriaTest.cpp test/test_main.cpp)
+
+target_link_libraries(PizzerriaTest GTest::gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(PizzerriaTest)
