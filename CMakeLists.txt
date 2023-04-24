@@ -15,4 +15,4 @@ set_target_properties(${PROJECT_NAME}.lib PROPERTIES CXX_STANDARD 17 CXX_STANDAR
 add_executable(${PROJECT_NAME} src/main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}.lib)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}.lib pthread)
