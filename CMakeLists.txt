@@ -31,7 +31,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 enable_testing()
 
 add_executable(${PROJECT_NAME}-ut test/test_main.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib test/PizzeriaTest.cpp GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock GTest::gmock_main)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
