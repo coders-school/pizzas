@@ -6,15 +6,12 @@ project(Pizzas)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-Include(FetchContent)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
 )
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(googletest)
 
 set(SRC_LIST
@@ -30,8 +27,9 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 enable_testing()
 
-add_executable(${PROJECT_NAME}-ut test/test_main.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib test/PizzeriaTest.cpp GTest::gtest_main GTest::gmock GTest::gmock_main)
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
+add_test(NAME runTests COMMAND ${PROJECT_NAME}-ut)
