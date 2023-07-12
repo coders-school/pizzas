@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include "../../src/Pizza.hpp"
 
 int main(int argc, char** argv)
 {
