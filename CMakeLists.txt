@@ -39,8 +39,9 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 
 link_libraries(gmock)
+enable_testing()
 add_executable(${PROJECT_NAME}-ut ${SRC_UT})
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
 set_target_properties(${PROJECT_NAME}-lib PROPERTIES ${PROPERTIES})
 set_target_properties(${PROJECT_NAME} PROPERTIES ${PROPERTIES})
