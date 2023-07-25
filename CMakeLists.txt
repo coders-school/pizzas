@@ -14,7 +14,7 @@ set(SRC_LIST
     src/Pizza.cpp
     src/Pizzeria.cpp)
 
-set(SRC_UT
+set(TEST_SRC_LIST
   test/test_main.cpp
   test/PizzeriaTest.cpp)
 
@@ -30,9 +30,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 include_directories(src)
-include_directories(test/mocks)
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST}) 
-target_link_libraries(${PROJECT_NAME}-lib Threads::Threads)
+target_link_libraries(${PROJECT_NAME}-lib pthread)
 
 add_executable(${PROJECT_NAME} src/main.cpp)   
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
@@ -40,7 +39,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 link_libraries(gmock)
 enable_testing()
-add_executable(${PROJECT_NAME}-ut ${SRC_UT})
+add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
 set_target_properties(${PROJECT_NAME}-lib PROPERTIES ${PROPERTIES})
