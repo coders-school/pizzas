@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11.0)
 
-project(pizzas)
+project(Pizzas)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
