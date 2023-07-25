@@ -4,8 +4,7 @@ project(pizzas)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(PROPERTIES
-  CXX_STANDARD 17
+set(CXX_STANDARD 17
   CXX_STANDARD_REQUIRED ON)
 
 set(SRC_LIST
@@ -41,10 +40,6 @@ link_libraries(gmock)
 enable_testing()
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
-
-set_target_properties(${PROJECT_NAME}-lib PROPERTIES ${PROPERTIES})
-set_target_properties(${PROJECT_NAME} PROPERTIES ${PROPERTIES})
-set_target_properties(${PROJECT_NAME}-ut PROPERTIES ${PROPERTIES})
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
