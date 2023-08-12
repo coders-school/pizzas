@@ -1,32 +1,46 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.11.0)
+
+project(Pizzas)
+set(SRC_LIST
+    src/Funghi.cpp
+    src/Margherita.cpp
+    src/Pizza.cpp
+    src/Pizzeria.cpp
+)
+
+SET(TEST_SRC_LIST
+    test/PizzeriaTest.cpp
+    test/test_main.cpp
+)
 
 include(FetchContent)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        main
+  GIT_TAG release-1.12.1
 )
 
-
-set(GTEST_FORCE_SHARED_CRT ON CACHE BOOL "" FORCE)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-project(Pizzas)
-
-set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
-
-add_library(${PROJECT_NAME}.lib STATIC ${SRC_LIST})
-set_target_properties(${PROJECT_NAME}.lib PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+include_directories(src)
+add_library(CUSTOM_STATIC_LIB STATIC ${SRC_LIST})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+find_package(Threads)
+target_link_libraries(${CUSTON_STATIC_LIB} Threads::Threads)
+target_link_libraries(${PROJECT_NAME} PRIVATE CUSTOM_STATIC_LIB)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}.lib pthread)
+#message(FATAL_ERROR "Build step AFTER binary failed")
 
-add_executable(PizzeriaTest test/PizzeriaTest.cpp)
-
-target_link_libraries(PizzeriaTest gtest_main)
+#create test binary
+link_libraries(gmock)
+add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
+#linking gtest library to test binary
+target_link_libraries(${PROJECT_NAME}-ut CUSTOM_STATIC_LIB)
 
 enable_testing()
 
-add_test(NAME pTest COMMAND PizzeriaTest)
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME}-ut)
