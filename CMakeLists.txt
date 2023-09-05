@@ -31,6 +31,3 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib gtest_main gmock)
-
-enable_testing()
-add_test(GTest ${PROJECT_NAME}-ut)
