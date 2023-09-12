@@ -4,8 +4,14 @@ project(Pizzas)
 set(CXX_STANDARD 17)
 set(CXX_STANDARD_REQUIRED ON)
 
-set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
-set(TEST_SRC_LIST test/PizzeriaTest.cpp test/test_main.cpp)
+set(SRC_LIST
+    src/Funghi.cpp
+    src/Margherita.cpp
+    src/Pizza.cpp
+    src/Pizzeria.cpp)
+set(TEST_SRC_LIST
+    test/PizzeriaTest.cpp
+    test/test_main.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
