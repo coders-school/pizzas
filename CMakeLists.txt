@@ -5,8 +5,10 @@ project(Pizzas)
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
 set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
-set(SRC_TEST test/PizzeriaTest.cpp test/test_main.cpp test/mocks/PizzaMock.hpp)
+set(TEST_SRC_LIST test/PizzeriaTest.cpp test/test_main.cpp)
 
+include_directories(src)
+include_directories(test)
 Include(FetchContent)
 
 FetchContent_Declare(
