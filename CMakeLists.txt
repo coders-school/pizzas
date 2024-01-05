@@ -4,6 +4,7 @@ project(Pizzas)
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
 set(SRC_LIST 
+  src/main.cpp
   src/Funghi.cpp 
   src/Margherita.cpp 
   src/Pizza.cpp 
@@ -28,7 +29,11 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+add_library(${PROJECT_NAME}-lib STATIC 
+  src/Funghi.cpp 
+  src/Margherita.cpp 
+  src/Pizza.cpp 
+  src/Pizzeria.cpp)
 target_compile_options(${PROJECT_NAME}-lib PUBLIC ${FLAGS})
 target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
 
