@@ -4,10 +4,15 @@ project(pizzas)
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
 set(SRC_LIST 
+  src/main.cpp
+
   src/Funghi.cpp 
   src/Margherita.cpp 
   src/Pizza.cpp 
-  src/Pizzeria.cpp)
+  src/Pizzeria.cpp
+
+  test/PizzeriaTest.cpp 
+  test/test_main.cpp)
 
 set(TEST_SRC_LIST 
   test/PizzeriaTest.cpp 
@@ -31,12 +36,13 @@ FetchContent_MakeAvailable(googletest)
 add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST}) 
 target_compile_options(${PROJECT_NAME}-lib PUBLIC ${FLAGS})
 target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
+target_link_libraries(${PROJECT_NAME}-lib pthread GTest::gtest_main GTest::gmock)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
 
 enable_testing()
 add_test(NAME TestGroup COMMAND ${PROJECT_NAME}-ut)
