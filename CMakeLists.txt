@@ -4,14 +4,14 @@ project(pizzas)
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
 SET(SRC_LIST
-  src/Funghi.cpp
-  src/Margherita.cpp
-  src/Pizza.cpp
-  src/Pizzeria.cpp)
+    src/Funghi.cpp
+    src/Margherita.cpp
+    src/Pizza.cpp
+    src/Pizzeria.cpp)
 
 set(SRC_TESTS_LIST
-  test/test_main.cpp
-  test/PizzeriaTest.cpp)
+    test/test_main.cpp
+    test/PizzeriaTest.cpp)
 
 include_directories(src)
 include_directories(test)
