@@ -9,11 +9,14 @@ set(TEST_SRC_LIST test/PizzeriaTest.cpp test/test_main.cpp)
 
 include_directories(src)
 include_directories(test)
+
 Include(FetchContent)
+find_package(Threads REQUIRED)
 
 FetchContent_Declare(
-  googletest 
-  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG main
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
