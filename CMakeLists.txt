@@ -5,7 +5,7 @@ project(Pizzas)
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
 set(SRC_LIST src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
-set(SRC_TEST test/PizzeriaTest.cpp test/test_main.cpp)
+set(SRC_TEST test/PizzeriaTest.cpp test/test_main.cpp test/mocks/PizzaMock.hpp)
 
 Include(FetchContent)
 
@@ -22,7 +22,7 @@ target_compile_options(${PROJECT_NAME}-lib PUBLIC ${FLAGS})
 target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 add_executable(${PROJECT_NAME}-ut ${SRC_TEST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock)
