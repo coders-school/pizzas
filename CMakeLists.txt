@@ -3,16 +3,11 @@ project(pizzas)
 
 # set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion -lstdc+ -Ofast)
 set(FLAGS -lstdc+ -Ofast)
-set(SRC_LIST 
-  src/main.cpp
-
+SET(SRC_LIST 
   src/Funghi.cpp 
   src/Margherita.cpp 
   src/Pizza.cpp 
-  src/Pizzeria.cpp
-
-  test/PizzeriaTest.cpp 
-  test/test_main.cpp)
+  src/Pizzeria.cpp)
 
 set(SRC_TESTS_LIST 
   test/PizzeriaTest.cpp 
