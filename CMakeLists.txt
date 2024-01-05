@@ -26,7 +26,7 @@ target_compile_features(${PROJECT_NAME}-lib PUBLIC cxx_std_17)
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
-add_executable(${PROJECT_NAME}-ut ${SRC_TEST})
+add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock)
 
 enable_testing()
