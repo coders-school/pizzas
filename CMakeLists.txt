@@ -14,7 +14,7 @@ FetchContent_MakeAvailable(googletest)
 
 find_library(PTHREAD_LIB pthread)
 
-set(SOURCES_FILES_LIST
+set(SRC_LIST
     src/Funghi.cpp
     src/Margherita.cpp
     src/Pizza.cpp
@@ -23,7 +23,7 @@ set(SOURCES_FILES_LIST
 set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 # add sources as library
-add_library(${PROJECT_NAME}_LIB STATIC ${SOURCES_FILES_LIST})
+add_library(${PROJECT_NAME}_LIB STATIC ${SRC_LIST})
 target_compile_options(${PROJECT_NAME}_LIB PRIVATE ${FLAGS})
 target_compile_features(${PROJECT_NAME}_LIB PRIVATE cxx_std_17)
 
@@ -40,8 +40,7 @@ enable_testing()
 
 set(PROJECT_NAME_TEST ${PROJECT_NAME}_GT)
 
-set(TEST_SRC_LIST
-    test/PizzeriaTest.cpp)
+# set(TEST_SRC_LIST test/PizzeriaTest.cpp)
 
 # add tests sources as library
 #add_library(${PROJECT_NAME_TEST}_LIB STATIC ${TEST_SRC_LIST})
