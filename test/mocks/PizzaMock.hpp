@@ -1,5 +1,5 @@
 #include "Pizza.hpp"
-#include "gmock/gmock.h"
+#include <gmock/gmock.h>
 
 struct PizzaDummy : public Pizza
 {

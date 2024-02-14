@@ -1,14 +1,16 @@
-cmake_minimum_required(VERSION 3.11.0)
+cmake_minimum_required(VERSION 3.18.0)
 
 project(Pizzas)
 
 
 include(FetchContent)
-FetchContent_Declare (
-    GTest
+FetchContent_Declare(
+    googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG main
+    GIT_TAG        main
 )
+FetchContent_MakeAvailable(googletest)
+
 
 find_library(PTHREAD_LIB pthread)
 
@@ -25,6 +27,8 @@ add_library(${PROJECT_NAME}_LIB STATIC ${SOURCES_FILES_LIST})
 target_compile_options(${PROJECT_NAME}_LIB PRIVATE ${FLAGS})
 target_compile_features(${PROJECT_NAME}_LIB PRIVATE cxx_std_17)
 
+include_directories("${CMAKE_SOURCE_DIR}/src"
+                    "${CMAKE_SOURCE_DIR}/test/mocks")
 # main source code
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_LIB ${PTHREAD_LIB})
@@ -45,7 +49,7 @@ set(TEST_SRC_LIST
 #target_compile_features(${PROJECT_NAME_TEST}_LIB PRIVATE cxx_std_17)
 
 add_executable(${PROJECT_NAME_TEST} test/PizzeriaTest.cpp)
-target_link_libraries(${PROJECT_NAME_TEST} ${PROJECT_NAME}_LIB gtest gtest_main)
+target_link_libraries(${PROJECT_NAME_TEST} ${PROJECT_NAME}_LIB gtest gmock gtest_main)
 target_compile_options(${PROJECT_NAME_TEST} PRIVATE ${FLAGS})
 target_compile_features(${PROJECT_NAME_TEST} PRIVATE cxx_std_17)
 
