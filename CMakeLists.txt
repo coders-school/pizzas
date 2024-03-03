@@ -6,7 +6,7 @@ set (SRC_LIST
      src/Margherita.cpp 
      src/Pizza.cpp 
      src/Pizzeria.cpp)
-set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
+#set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 include(FetchContent)
 FetchContent_Declare(
