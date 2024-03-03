@@ -32,18 +32,18 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 enable_testing()
 
 
-set(PROJECT_NAME_TEST ${PROJECT_NAME}_GT)
+set(PNT ${PROJECT_NAME}_GT)
 
 # set(TEST_SRC_LIST test/PizzeriaTest.cpp)
 
 # add tests sources as library
-#add_library(${PROJECT_NAME_TEST}_LIB STATIC ${TEST_SRC_LIST})
-#target_compile_options(${PROJECT_NAME_TEST}_LIB PRIVATE ${FLAGS})
-#target_compile_features(${PROJECT_NAME_TEST}_LIB PRIVATE cxx_std_17)
+#add_library(${PNT}_LIB STATIC ${TEST_SRC_LIST})
+#target_compile_options(${PNT}_LIB PRIVATE ${FLAGS})
+#target_compile_features(${PNT}_LIB PRIVATE cxx_std_17)
 
-add_executable(${PROJECT_NAME_TEST}_CT test/PizzeriaTest.cpp)
-target_link_libraries(${PROJECT_NAME_TEST}_CT ${PROJECT_NAME}_LIB gtest gmock gtest_main)
-target_compile_options(${PROJECT_NAME_TEST}_CT PRIVATE ${FLAGS})
-target_compile_features(${PROJECT_NAME_TEST}_CT PRIVATE cxx_std_17)
+add_executable(${PNT} test/PizzeriaTest.cpp)
+target_link_libraries(${PNT} ${PROJECT_NAME}_LIB gtest gmock gtest_main)
+target_compile_options(${PNT} PRIVATE ${FLAGS})
+target_compile_features(${PNT} PRIVATE cxx_std_17)
 
-add_test(NAME ${PROJECT_NAME}Tests COMMAND ${PROJECT_NAME_TEST}_CT)
+add_test(NAME Tests COMMAND ${PNT})
