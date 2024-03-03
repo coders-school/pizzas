@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.11.0)
 project(Pizzas)
 set(CMAKE_CXX_STANDARD 17)
-set (SRC_LIST src/Funghi.cpp  src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
+set (SRC_LIST 
+     src/Funghi.cpp 
+     src/Margherita.cpp 
+     src/Pizza.cpp 
+     src/Pizzeria.cpp)
 #set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 include(FetchContent)
@@ -16,13 +20,13 @@ find_library(PTHREAD_LIB pthread)
 include_directories("${CMAKE_SOURCE_DIR}/src"
                     "${CMAKE_SOURCE_DIR}/test/mocks")
 
-add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
-target_compile_options(${PROJECT_NAME}-lib PRIVATE ${FLAGS})
+add_library(${PROJECT_NAME}_LIB STATIC ${SRC_LIST})
+target_compile_options(${PROJECT_NAME}_LIB PRIVATE ${FLAGS})
 
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_LIB)
 
 enable_testing()
 
@@ -31,7 +35,7 @@ target_link_libraries(
   PT
   GTest::gtest_main
   gtest gmock
-  ${PROJECT_NAME}-lib 
+  ${PROJECT_NAME}_LIB
   
 )
 
