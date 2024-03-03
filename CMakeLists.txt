@@ -6,7 +6,7 @@ set (SRC_LIST
      src/Margherita.cpp 
      src/Pizza.cpp 
      src/Pizzeria.cpp)
-#set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
+#set(FLAGS -Wall -Wextra -pedantic -Wconversion)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -41,9 +41,9 @@ set(PROJECT_NAME_TEST ${PROJECT_NAME}_GT)
 #target_compile_options(${PROJECT_NAME_TEST}_LIB PRIVATE ${FLAGS})
 #target_compile_features(${PROJECT_NAME_TEST}_LIB PRIVATE cxx_std_17)
 
-add_executable(${PROJECT_NAME_TEST} test/PizzeriaTest.cpp)
-target_link_libraries(${PROJECT_NAME_TEST} ${PROJECT_NAME}_LIB gtest gmock gtest_main)
-target_compile_options(${PROJECT_NAME_TEST} PRIVATE ${FLAGS})
-target_compile_features(${PROJECT_NAME_TEST} PRIVATE cxx_std_17)
+add_executable(${PROJECT_NAME_TEST}_CT test/PizzeriaTest.cpp)
+target_link_libraries(${PROJECT_NAME_TEST}_CT ${PROJECT_NAME}_LIB gtest gmock gtest_main)
+target_compile_options(${PROJECT_NAME_TEST}_CT PRIVATE ${FLAGS})
+target_compile_features(${PROJECT_NAME_TEST}_CT PRIVATE cxx_std_17)
 
-add_test(NAME ${PROJECT_NAME}Tests COMMAND ${PROJECT_NAME_TEST})
+add_test(NAME ${PROJECT_NAME}Tests COMMAND ${PROJECT_NAME_TEST}_CT)
