@@ -46,4 +46,5 @@ target_link_libraries(XXX ${PROJECT_NAME}_LIB gtest gmock gtest_main)
 target_compile_options(XXX PRIVATE ${FLAGS})
 target_compile_features(XXX PRIVATE cxx_std_17)
 
-add_test(NAME Tests COMMAND XXX)
+include(GoogleTest)
+gtest_discover_tests(XXX)
