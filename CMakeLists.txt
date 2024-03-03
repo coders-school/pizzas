@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.11.0)
 project(Pizzas)
 set(CMAKE_CXX_STANDARD 17)
 set (SRC_LIST src/Funghi.cpp  src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp)
+#set(FLAGS -Wall -Wextra -Werror -pedantic -Wconversion)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -26,9 +27,9 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 enable_testing()
 
-add_executable( PizzeriaTest test/PizzeriaTest.cpp)
+add_executable( PT test/PizzeriaTest.cpp)
 target_link_libraries(
-  PizzeriaTest
+  PT
   GTest::gtest_main
   gtest gmock
   ${PROJECT_NAME}-lib 
@@ -36,4 +37,4 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(PizzeriaTest)
+gtest_discover_tests(PT)
