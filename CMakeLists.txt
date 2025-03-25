@@ -30,8 +30,8 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 
 link_libraries(gmock)
-add_executable(${PROJECT_NAME}-ut test/test_main.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib test/PizzeriaTest.cpp GTest::gtest_main)
+add_executable(${PROJECT_NAME}-ut test/test_main.cpp test/PizzeriaTest.cpp)
+target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main)
 
 enable_testing()
 include(GoogleTest)
