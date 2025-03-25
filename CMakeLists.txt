@@ -6,10 +6,10 @@ project ( ${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 17)
 set (SRC_LIST 
     src/Funghi.cpp
-    src/main.cpp
     src/Margherita.cpp
     src/Pizza.cpp
-    src/Pizzeria.cpp)
+    src/Pizzeria.cpp
+    )
 
 
 add_library( ${PROJECT_NAME}lib STATIC src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp) 
