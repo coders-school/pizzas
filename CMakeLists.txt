@@ -12,10 +12,10 @@ set (SRC_LIST
     src/Pizzeria.cpp)
 
 
-add_library( ${PROJECT_NAME}-lib STATIC ${SRC_LIST})
+add_library( ${PROJECT_NAME}lib STATIC src/Funghi.cpp src/Margherita.cpp src/Pizza.cpp src/Pizzeria.cpp) 
 
 add_executable( ${PROJECT_NAME} src/main.cpp)
-target_link_libraries( ${PROJECT_NAME} ${PROJECT_NAME}-lib)
+target_link_libraries( ${PROJECT_NAME} ${PROJECT_NAME}lib)
 target_link_libraries( ${PROJECT_NAME} pthread)
 
 
