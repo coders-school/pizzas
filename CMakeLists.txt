@@ -26,7 +26,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib pthread)
 
 add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
 target_include_directories(${PROJECT_NAME}-ut PRIVATE ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(${PROJECT_NAME}-ut PRIVATE ${PROJECT_NAME}-lib pthread GTest::gtest GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut PRIVATE ${PROJECT_NAME}-lib pthread GTest::gtest GTest::gtest_main GTest::gmock_main GTest::gmock)
 
 enable_testing()
 add_test(NAME PizzeriaTest COMMAND ${PROJECT_NAME}-ut)
