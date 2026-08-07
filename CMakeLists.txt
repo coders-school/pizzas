@@ -24,12 +24,12 @@ enable_testing()
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(hello_test test/PizzeriaTest.cpp test/test_main.cpp)
-target_include_directories(hello_test PRIVATE src)
-target_link_libraries(hello_test PRIVATE GTest::gtest_main gmock ${PROJECT_NAME}-lib)
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
+target_include_directories(${PROJECT_NAME}-ut PRIVATE src)
+target_link_libraries(${PROJECT_NAME}-ut PRIVATE GTest::gtest_main gmock ${PROJECT_NAME}-lib)
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(${PROJECT_NAME}-ut)
 
 
 
