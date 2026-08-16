@@ -20,10 +20,7 @@ target_include_directories(${PROJECT_NAME}-lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_link_libraries(Pizzas PRIVATE
-    Pizzas-lib
-    pthread
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib pthread)
 
 include(FetchContent)
 FetchContent_Declare(
