@@ -15,14 +15,15 @@ set(TEST_SRC_LIST
 test/PizzeriaTest.cpp 
 )
 add_executable(${PROJECT_NAME} src/main.cpp)
-add_library(${PROJECT_NAME}-lib ${SRC_LIST})
+add_library(${PROJECT_NAME}-lib STATIC ${SRC_LIST})
 target_include_directories(${PROJECT_NAME}-lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE 
-${PROJECT_NAME}-lib 
-pthread)
+target_link_libraries(Pizzas PRIVATE
+    Pizzas-lib
+    pthread
+)
 
 include(FetchContent)
 FetchContent_Declare(
