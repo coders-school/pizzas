@@ -73,7 +73,7 @@ positive_lookup "executable should be linked with the library" "target_link_libr
 does_file_exist ".github/workflows/main.yml"
 
 # Part 2
-positive_lookup "binary with tests exist" "add_executable\([\$]\{PROJECT_NAME\}-ut(\s+[[:word:]]+\.cpp)+\)|add_executable\([\$]\{PROJECT_NAME\}-ut\s+([\$\{A-Z_\}]*)\)|add_executable\(.*test\/PizzeriaTest\.cpp\)"
+positive_lookup "binary with tests exist" "add_executable\([\$]\{PROJECT_NAME\}-ut(\s+[\w\/.-]+\.cpp)+\)|add_executable\([\$]\{PROJECT_NAME\}-ut\s+([\$\{A-Z_\}]*)\)|add_executable\(.*test\/PizzeriaTest\.cpp\)"
 positive_lookup "test binary added to ctest" "gtest_discover_tests|add_test\(NAME.*\s+COMMAND\s+[\$]\{PROJECT_NAME\}-ut\)"
 positive_lookup "testing is enabled" "enable_testing\(\)"
 
