@@ -11,5 +11,5 @@ jobs:
     - name: Run check.sh
       run: |
         chmod +x .github/scripts/check.sh
-        sudo apt install -y pcregrep
+        sudo apt-get update && sudo apt-get install -y pcre2-utils
         .github/scripts/check.sh CMakeLists.txt
