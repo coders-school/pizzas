@@ -23,12 +23,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_RE
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_FLAG}) 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
-enable_testing()
 add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp test/test_main.cpp)
 set_target_properties(${PROJECT_NAME}-ut PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE ${COMPILE_FLAG}) 
 target_include_directories(${PROJECT_NAME}-ut PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/test)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib GTest::gtest_main GTest::gmock)
 
+enable_testing()
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
