@@ -33,15 +33,11 @@ target_include_directories(${PROJECT_NAME}-lib
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 
-add_executable(${PROJECT_NAME}-ut
-    test/test_main.cpp
-    test/PizzeriaTest.cpp
-)
+add_executable(${PROJECT_NAME}-ut test/PizzeriaTest.cpp)
+target_link_libraries(${PROJECT_NAME}-ut PRIVATE ${PROJECT_NAME}-lib GTest::gtest GTest::gtest_main GTest::gmock pthread)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib pthread)
 
-target_link_libraries(${PROJECT_NAME}-ut PRIVATE ${PROJECT_NAME}-lib GTest::gmock GTest::gtest pthread)
-
 
 enable_testing()
-add_test(NAME PizzasTests COMMAND Pizzas-ut)
+add_test(NAME ${PROJECT_NAME}-ut COMMAND ${PROJECT_NAME}-ut)
